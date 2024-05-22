@@ -10,39 +10,48 @@ import re
 class ScoreBoard:
     def __init__(self):
         print("Opening ", includes.ScoreBoardFile)
-        root = etree.parse(includes.ScoreBoardFile)
-        with open(includes.ScoreBoardFile) as xml_file:
+        #root = etree.parse(includes.ScoreBoardFile)
+        self.load(includes.ScoreBoardFile)
+
+
+    def load(self, xmlSourceFile):
+        with open(xmlSourceFile) as xml_file:
             xml_data = xml_file.read()
 
         dict_data = xmltodict.parse(xml_data)
-        print(dict_data['Data'])
-        type(dict_data)
+        # print(dict_data['Data'])
+        # type(dict_data)
         self.SBVersion = dict_data['Data']['Version']['#text']
         self.SBName = dict_data['Data']['Scoreboard']['#text']
         if dict_data['Data']['ScoreboardFields']['PeriodTime']['Running']['#text'] == 'False':
             self.PeriodStatus = False
         else:
             self.PeriodStatus = True
+
+        self.Period = int(dict_data['Data']['ScoreboardFields']['Period']['Value']['#text'])
         # to get time left, we'll need a bit of regex magic
         self.PeriodTimeLeft = self.timeFromScoreBoard(dict_data['Data']['ScoreboardFields']['PeriodTime']['CurrentTime']['#text'])
-        #self.PeriodTimeLeft = dict_data['Data']['ScoreboardFields']['PeriodTime']['CurrentTime']['#text']
 
         self.HomeTeamName = dict_data['Data']['ScoreboardFields']['Team1Name']['Value']['#text']
         self.AwayTeamName = dict_data['Data']['ScoreboardFields']['Team2Name']['Value']['#text']
-        #print(dict_data.'Version')
-        #for elem in root.iter():
-        #    print(elem.tag, elem.text)
 
-            # load up the SB fields in the object
+        self.HomeTeamScore = dict_data['Data']['ScoreboardFields']['Team1Score']['Value']['#text']
+        self.AwayTeamScore = dict_data['Data']['ScoreboardFields']['Team2Score']['Value']['#text']
 
-            #self.scoreboardVersion = elem.["Version"]
+        self.HomeTeamShots = dict_data['Data']['ScoreboardFields']['Team1ShotsOnGoal']['Value']['#text']
+        self.AwayTeamShots = dict_data['Data']['ScoreboardFields']['Team2ShotsOnGoal']['Value']['#text']
+
+    def reload(self):
+        # regrab everything from the XML, including a reopen of the file
+        print("reloading from XML")
+        self.load(includes.ScoreBoardFile)
 
 
     def timeFromScoreBoard(self, timeString):
         # two possibles : 19:45 - min:sec, or 55.9 sec:fraction of sec - can use the ":" or "," to make the call
-        print("timeString : ", timeString)
-        mins = 15
-        secs = 45.0
+        #print("timeString : ", timeString)
+        mins = 99
+        secs = 61.0
         frac = 0
         p = re.compile(r'(\d+)\:(\d+)')
         m = p.match(timeString)
@@ -54,7 +63,7 @@ class ScoreBoard:
             p2 = re.compile(r'(\d+)\.(\d)')
             m2 = p2.match(timeString)
             if (m2):
-                print("secs and fracs")
+                #print("secs and fracs")
                 mins = 0
                 secs = float(m2.group(1))
                 # frac = m2.group(1)

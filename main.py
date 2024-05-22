@@ -27,9 +27,15 @@ if __name__ == '__main__':
     frm = game_setup.InitialSetup(None, title=includes.AppName)
     thisGame = CC.Game(GameID=1)
     scoreboard = SB.ScoreBoard()
-    print(scoreboard.SBName, scoreboard.SBVersion, scoreboard.PeriodStatus, scoreboard.HomeTeamName)
-    print('Time left in period :', scoreboard.PeriodTimeLeft)
+    #print(scoreboard.SBName, scoreboard.SBVersion)
+    if (scoreboard.PeriodStatus):
+        print("Period :", scoreboard.Period, scoreboard.PeriodTimeLeft)
+    else:
+        print("Period (paused) : ", scoreboard.Period, scoreboard.PeriodTimeLeft)
+    print(scoreboard.HomeTeamName, ":", scoreboard.HomeTeamScore, " .... ", scoreboard.AwayTeamName, ":", scoreboard.AwayTeamScore)
+    #print('Time left in period :', scoreboard.PeriodTimeLeft)
     print(thisGame)
+    scoreboard.reload()
     #print(DD.dummyHome.Name, DD.dummyHome.TeamID)
     #frm = wx.Frame(None, title=includes.AppName)
     frm.Show()

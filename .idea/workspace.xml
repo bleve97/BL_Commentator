@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="get it going">
+    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="process scoreboard times etc, first cut">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes.py" beforeDir="false" afterPath="$PROJECT_DIR$/includes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
     </list>
@@ -164,13 +163,22 @@
       <option name="project" value="LOCAL" />
       <updated>1716344052067</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="process scoreboard times etc, first cut">
+      <option name="closed" value="true" />
+      <created>1716380903463</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716380903463</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="early WIP, just a push sp I can pop it on laptop for testing at rink" />
     <MESSAGE value="get it going" />
-    <option name="LAST_COMMIT_MESSAGE" value="get it going" />
+    <MESSAGE value="process scoreboard times etc, first cut" />
+    <option name="LAST_COMMIT_MESSAGE" value="process scoreboard times etc, first cut" />
   </component>
 </project>
