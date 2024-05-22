@@ -15,6 +15,7 @@ class ScoreBoard:
 
 
     def load(self, xmlSourceFile):
+        # all the shit is in here, hard coded XML parsing tags. Yuk. Yuk. Yuk.
         with open(xmlSourceFile) as xml_file:
             xml_data = xml_file.read()
 
