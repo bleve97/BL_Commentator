@@ -7,7 +7,7 @@
 
 import includes
 import fetcher
-import urllib.request, json
+#import urllib.request, json
 import wx
 import game_setup
 import commclasses as CC
@@ -26,16 +26,16 @@ if __name__ == '__main__':
     app = wx.App()
     frm = game_setup.InitialSetup(None, title=includes.AppName)
     thisGame = CC.Game(GameID=1)
-    scoreboard = SB.ScoreBoard()
+    SBD = SB.ScoreBoard()  # we have Scoreboard Data, which is pulled from the scoreboard XML file
     #print(scoreboard.SBName, scoreboard.SBVersion)
-    if (scoreboard.PeriodStatus):
-        print("Period :", scoreboard.Period, scoreboard.PeriodTimeLeft)
+    if (SBD.PeriodStatus):
+        print("Period :", SBD.Period, SBD.PeriodTimeLeft)
     else:
-        print("Period (paused) : ", scoreboard.Period, scoreboard.PeriodTimeLeft)
-    print(scoreboard.HomeTeamName, ":", scoreboard.HomeTeamScore, " .... ", scoreboard.AwayTeamName, ":", scoreboard.AwayTeamScore)
+        print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
+    print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
     #print('Time left in period :', scoreboard.PeriodTimeLeft)
     print(thisGame)
-    scoreboard.reload()
+    SBD.reload()    # we need to reload this every second or more. Probably every 1/2 second will do for our purposes
     #print(DD.dummyHome.Name, DD.dummyHome.TeamID)
     #frm = wx.Frame(None, title=includes.AppName)
     frm.Show()
