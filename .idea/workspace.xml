@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="polling scoreboard works now. No useful GUI .. but progress!&#10;Using a global for SBD in game_setup.py - ugly, but less work than futzing withj wx's Bind()">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" beforeDir="false" afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commclasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/commclasses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes.py" beforeDir="false" afterPath="$PROJECT_DIR$/includes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
-    </list>
+    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="poking before taking in to iceHQ for onsite testing" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,23 +54,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.About.executor": "Run",
-    "Python.__main__.executor": "Run",
-    "Python.democlock (1).executor": "Run",
-    "Python.democlock.executor": "Run",
-    "Python.main (1).executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Carl Brewer/Desktop/sprintTracker/python/0.1a8",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.About.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__main__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.democlock (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.democlock.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Carl Brewer/Desktop/sprintTracker/python/0.1a8&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Carl Brewer\Desktop\hockey\BL_commbox\example progs" />
@@ -277,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716515806586</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="poking before taking in to iceHQ for onsite testing">
+      <option name="closed" value="true" />
+      <created>1716533296827</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716533296827</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -288,6 +287,7 @@
     <MESSAGE value="refactor, get more from scoreboard files" />
     <MESSAGE value="shorten var names, tidy up a bit" />
     <MESSAGE value="polling scoreboard works now. No useful GUI .. but progress!&#10;Using a global for SBD in game_setup.py - ugly, but less work than futzing withj wx's Bind()" />
-    <option name="LAST_COMMIT_MESSAGE" value="polling scoreboard works now. No useful GUI .. but progress!&#10;Using a global for SBD in game_setup.py - ugly, but less work than futzing withj wx's Bind()" />
+    <MESSAGE value="poking before taking in to iceHQ for onsite testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="poking before taking in to iceHQ for onsite testing" />
   </component>
 </project>
