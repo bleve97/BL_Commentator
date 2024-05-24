@@ -13,7 +13,7 @@ DefaultScoreBoardPollIntervalSeconds = 0.5 # seconds
 ScoreBoardPollIntervalSeconds = DefaultScoreBoardPollIntervalSeconds
 
 # for testing!
-defaultGameID = 6024
+defaultGameID = 6548
 gameID = defaultGameID
 
 # games/game?game_id=6024&xsyte_id=347&format=json"

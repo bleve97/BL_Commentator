@@ -81,8 +81,8 @@ class Game(Base):
     HomePIM: Mapped[Optional[int]]
     AwayPIM: Mapped[Optional[int]]
 
-    def __repr__(self) -> str:
-        return f"Game(id={self.GameID})"
+    #def __repr__(self) -> str:
+    #    return f"Game(id={self.GameID})"
 
 
 

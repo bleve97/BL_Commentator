@@ -10,6 +10,8 @@ import scoreboard as SB
 
 # global to this module, urk...
 SBD = SB.ScoreBoard()
+ThisGame = CC.Game(GameID=includes.defaultGameID)
+xciteGameDataSnapshot = fetcher.getGameData(game_id=includes.gameID)
 
 
 class InitialSetup(wx.Frame):
@@ -59,16 +61,18 @@ class InitialSetup(wx.Frame):
         #self.FetchWindow(self)
 
     def SBUpdate(self, event):
-        print("update the scoreboard data from the XML file")
+        #print("update the scoreboard data from the XML file")
         SBD.reload()
         if (SBD.PeriodStatus):
-            print("Period :", SBD.Period, SBD.PeriodTimeLeft)
+            print("Period ", SBD.Period, SBD.PeriodTimeLeft, end=' ')
         else:
-            print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
-        print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
+            print("Period (paused) ", SBD.Period, SBD.PeriodTimeLeft, end=' ')
+        print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
 
     def XCiteUpdate(self, event):
-        print("update the XCITE and database info")
+        print("updating the XCITE and database info")
+        #     gameData["fetchedAt"] = wx.DateTime.Now()
+        print(ThisGame)
 
 
     def makeMenuBar(self):
@@ -119,6 +123,7 @@ class InitialSetup(wx.Frame):
         # teams = gameDataSnapshot["teams"][0]["team_full_name"] + " vs " + gameDataSnapshot["teams"][1]["team_full_name"]
         CC.HomeTeam.Name = gameDataSnapshot["teams"][0]["team_full_name"]
         CC.AwayTeam.Name = gameDataSnapshot["teams"][1]["team_full_name"]
+        #print(gameDataSnapshot["fetchedAt"])
         # print(str(teams))
         print("Home : ", CC.HomeTeam.Name, "Away : ", CC.AwayTeam.Name)
         print("Fetched at : " + str(gameDataSnapshot["fetchedAt"]))

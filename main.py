@@ -10,9 +10,9 @@ import fetcher
 #import urllib.request, json
 import wx
 import game_setup
-import commclasses as CC
+#import commclasses as CC
 import dummydata as DD
-import scoreboard as SB
+#import scoreboard as SB
 
 
 # Press the green button in the gutter to run the script.
@@ -23,9 +23,9 @@ if __name__ == '__main__':
 
     app = wx.App()
     frm = game_setup.InitialSetup(None, title=includes.AppName)
-    thisGame = CC.Game(GameID=1)
+    #thisGame = CC.Game(GameID=1)
 
-    print(thisGame)
+    #print(thisGame)
     #print(DD.dummyHome.Name, DD.dummyHome.TeamID)
     frm.Show()
     app.MainLoop()

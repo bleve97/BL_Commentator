@@ -44,7 +44,7 @@ class ScoreBoard:
 
     def reload(self):
         # regrab everything from the XML, including a reopen of the file
-        print("reloading from XML")
+        #print("reloading from XML")
         self.load(includes.ScoreBoardFile)
 
 

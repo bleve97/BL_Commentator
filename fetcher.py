@@ -17,14 +17,13 @@ def getGameDataURL(game_id):
 
 def getGameData(game_id):
     jsonURL = getGameDataURL(game_id=game_id)
-    print(jsonURL)
+    # print(jsonURL)
     gameDataJSON =  urllib.request.urlopen(jsonURL).read()
     gameData = json.loads(gameDataJSON)
     gameData["fetchedAt"] = wx.DateTime.Now()
     return(gameData)
 
 
-# pulse - we'll pull the data from xcyte every JSONRefreshInterval using wx.timer()
 
 class FetchWindow(wx.Window):
     def __init__(self, parent):
