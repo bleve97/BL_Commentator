@@ -23,19 +23,6 @@ def getGameData(game_id):
     gameData["fetchedAt"] = wx.DateTime.Now()
     return(gameData)
 
-def ReadScoreboardXML(filename):
-    filename = filename
-    xml_file = open(filename, "r")
-    xml_string = xml_file.read()
-    def xml_to_dict(xml_string):
-        root = ET.fromstring(xml_string)
-        result = {}
-        for child in root:
-            if len(child) == 0:
-                result[child.tag] = child.text
-            else:
-                result[child.tag] = xml_to_dict(ET.tostring(child))
-        return result
 
 # pulse - we'll pull the data from xcyte every JSONRefreshInterval using wx.timer()
 

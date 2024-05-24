@@ -9,6 +9,9 @@ xsyte_id = 347
 DefaultJSONRefreshInterval = 10
 JSONRefreshInterval = DefaultJSONRefreshInterval
 
+DefaultScoreBoardPollIntervalSeconds = 0.5 # seconds
+ScoreBoardPollIntervalSeconds = DefaultScoreBoardPollIntervalSeconds
+
 # for testing!
 defaultGameID = 6024
 gameID = defaultGameID
@@ -17,6 +20,6 @@ gameID = defaultGameID
 
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
-ScoreBoardFile = "JSON samples/Livefeed"
-#ScoreBoardFile = 'JSON samples/sample_sbv3/feed'
+#ScoreBoardFile = "JSON samples/Livefeed"
+ScoreBoardFile = 'JSON samples/sample_sbv3/feed'
 

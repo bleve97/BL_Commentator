@@ -4,6 +4,13 @@ import includes
 import main
 import fetcher
 import commclasses as CC
+import game_setup
+import dummydata as DD
+import scoreboard as SB
+
+# global to this module, urk...
+SBD = SB.ScoreBoard()
+
 
 class InitialSetup(wx.Frame):
     def __init__(self, *args, **kw):
@@ -22,12 +29,47 @@ class InitialSetup(wx.Frame):
         sizer.Add(st, wx.SizerFlags().Border(wx.TOP|wx.LEFT, 25))
         pnl.SetSizer(sizer)
 
+
+        # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
+        # this is background, the loads -may- block, does wx have threads?!
+        #self.SBLoadCounter = 0
+        #SBD = SB.ScoreBoard()
+        print(SBD.SBName, SBD.SBVersion)
+
+        if(SBD.PeriodStatus):
+            print("Period :", SBD.Period, SBD.PeriodTimeLeft)
+        else:
+            print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
+        print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
+        #print('Time left in period :', scoreboard.PeriodTimeLeft)
+
+
+        self.SBTimer = wx.Timer(self, 1)
+        self.XCITETimer = wx.Timer(self, 2)
+        self.SBTimer.Start(int(includes.ScoreBoardPollIntervalSeconds * 1000.0))
+        self.XCITETimer.Start(includes.JSONRefreshInterval * 1000)
+        self.Bind(wx.EVT_TIMER, self.SBUpdate, id=1)
+        self.Bind(wx.EVT_TIMER, self.XCiteUpdate, id=2)
+
         self.makeMenuBar()
 
         self.CreateStatusBar()
         self.SetStatusText(includes.AppName + " " + includes.Version)
 
         #self.FetchWindow(self)
+
+    def SBUpdate(self, event):
+        print("update the scoreboard data from the XML file")
+        SBD.reload()
+        if (SBD.PeriodStatus):
+            print("Period :", SBD.Period, SBD.PeriodTimeLeft)
+        else:
+            print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
+        print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
+
+    def XCiteUpdate(self, event):
+        print("update the XCITE and database info")
+
 
     def makeMenuBar(self):
         fileMenu = wx.Menu()

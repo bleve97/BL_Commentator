@@ -66,8 +66,7 @@ class ScoreBoard:
             if (m2):
                 #print("secs and fracs")
                 mins = 0
-                secs = float(m2.group(1))
-                # frac = m2.group(1)
+                secs = float(m2.group())
         return(mins, secs)
 
 
