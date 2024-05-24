@@ -18,6 +18,7 @@ class ScoreBoard:
         # all the shit is in here, hard coded XML parsing tags. Yuk. Yuk. Yuk.
         with open(xmlSourceFile) as xml_file:
             xml_data = xml_file.read()
+            xml_file.close()
 
         dict_data = xmltodict.parse(xml_data)
         # print(dict_data['Data'])
