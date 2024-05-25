@@ -65,8 +65,12 @@ class InitialSetup(wx.Frame):
         SBD.reload()
         if (SBD.PeriodStatus):
             print("Period", SBD.Period, ":", SBD.PeriodTimeLeft.minute,SBD.PeriodTimeLeft.second, end=' ')
+            if (SBD.PeriodTimeLeft.microsecond):
+                print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
         else:
             print("Period (paused)", SBD.Period, ":", SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second, end=' ')
+            if (SBD.PeriodTimeLeft.microsecond):
+                print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
             print(SBD.HomeTeamName, "Penalty : ", end='')
@@ -76,7 +80,7 @@ class InitialSetup(wx.Frame):
             print(SBD.AwayTeamName, "Penalty : ", end='')
             for penalty in SBD.AwayTeamPenalties:
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
-        if (SBD.HomeTeamPenalties and SBD.AwayTeamPenalties):
+        if (SBD.HomeTeamPenalties or SBD.AwayTeamPenalties):
             print()
 
     def XCiteUpdate(self, event):
