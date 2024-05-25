@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="close the file!">
-      <change afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/Livefeed" afterDir="false" />
+    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="starting to grok penalties from the scoreboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" beforeDir="false" afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JSON samples/sample_sbv3/Livefeed" beforeDir="false" afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/Livefeed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes.py" beforeDir="false" afterPath="$PROJECT_DIR$/includes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -291,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716553043474</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="starting to grok penalties from the scoreboard">
+      <option name="closed" value="true" />
+      <created>1716606605788</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716606605788</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -304,6 +310,7 @@
     <MESSAGE value="polling scoreboard works now. No useful GUI .. but progress!&#10;Using a global for SBD in game_setup.py - ugly, but less work than futzing withj wx's Bind()" />
     <MESSAGE value="poking before taking in to iceHQ for onsite testing" />
     <MESSAGE value="close the file!" />
-    <option name="LAST_COMMIT_MESSAGE" value="close the file!" />
+    <MESSAGE value="starting to grok penalties from the scoreboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting to grok penalties from the scoreboard" />
   </component>
 </project>

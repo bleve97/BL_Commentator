@@ -64,14 +64,20 @@ class InitialSetup(wx.Frame):
         #print("update the scoreboard data from the XML file")
         SBD.reload()
         if (SBD.PeriodStatus):
-            print("Period ", SBD.Period, SBD.PeriodTimeLeft, end=' ')
+            print("Period", SBD.Period, ":", SBD.PeriodTimeLeft.minute,SBD.PeriodTimeLeft.second, end=' ')
         else:
-            print("Period (paused) ", SBD.Period, SBD.PeriodTimeLeft, end=' ')
+            print("Period (paused)", SBD.Period, ":", SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second, end=' ')
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
-            print(SBD.HomeTeamName, " PK")
+            print(SBD.HomeTeamName, "Penalty : ", end='')
+            for penalty in SBD.HomeTeamPenalties:
+                print(penalty.Number, penalty.timeLeft, ' ', end='')
         if SBD.AwayTeamPenalties:
-            print(SBD.AwayTeamName, " PK")
+            print(SBD.AwayTeamName, "Penalty : ", end='')
+            for penalty in SBD.AwayTeamPenalties:
+                print(penalty.Number, penalty.timeLeft, ' ', end='')
+        if (SBD.HomeTeamPenalties and SBD.AwayTeamPenalties):
+            print()
 
     def XCiteUpdate(self, event):
         print("updating the XCITE and database info")
