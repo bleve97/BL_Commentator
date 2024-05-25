@@ -68,6 +68,10 @@ class InitialSetup(wx.Frame):
         else:
             print("Period (paused) ", SBD.Period, SBD.PeriodTimeLeft, end=' ')
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
+        if SBD.HomeTeamPenalties:
+            print(SBD.HomeTeamName, " PK")
+        if SBD.AwayTeamPenalties:
+            print(SBD.AwayTeamName, " PK")
 
     def XCiteUpdate(self, event):
         print("updating the XCITE and database info")

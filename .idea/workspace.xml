@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="poking before taking in to iceHQ for onsite testing" />
+    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="close the file!">
+      <change afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/Livefeed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" beforeDir="false" afterPath="$PROJECT_DIR$/JSON samples/sample_sbv3/feed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes.py" beforeDir="false" afterPath="$PROJECT_DIR$/includes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716533296827</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="close the file!">
+      <option name="closed" value="true" />
+      <created>1716553043474</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716553043474</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -288,6 +303,7 @@
     <MESSAGE value="shorten var names, tidy up a bit" />
     <MESSAGE value="polling scoreboard works now. No useful GUI .. but progress!&#10;Using a global for SBD in game_setup.py - ugly, but less work than futzing withj wx's Bind()" />
     <MESSAGE value="poking before taking in to iceHQ for onsite testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="poking before taking in to iceHQ for onsite testing" />
+    <MESSAGE value="close the file!" />
+    <option name="LAST_COMMIT_MESSAGE" value="close the file!" />
   </component>
 </project>

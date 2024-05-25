@@ -7,6 +7,15 @@ from lxml import etree
 import xmltodict
 import re
 
+class SBPenalty:
+    def __init__(self, Number, timeLeft, crime):
+        self.Number = Number
+        self.timeLeft = timeLeft
+        self.crime = crime
+
+
+
+
 class ScoreBoard:
     def __init__(self):
         print("Opening ", includes.ScoreBoardFile)
@@ -43,10 +52,34 @@ class ScoreBoard:
         self.HomeTeamShots = dict_data['Data']['ScoreboardFields']['Team1ShotsOnGoal']['Value']['#text']
         self.AwayTeamShots = dict_data['Data']['ScoreboardFields']['Team2ShotsOnGoal']['Value']['#text']
 
+        # penalties, the XML :
+        self.HomeTeamPenalties = self.parsePenalties(dict_data['Data']['ScoreboardFields']['Team1Penalties'])
+        self.AwayTeamPenalties = self.parsePenalties(dict_data['Data']['ScoreboardFields']['Team2Penalties'])
+
+
     def reload(self):
         # regrab everything from the XML, including a reopen of the file
         #print("reloading from XML")
         self.load(includes.ScoreBoardFile)
+
+    def parsePenalties(self, chunk):
+        #print("parsing :", chunk)
+        Penalties = []
+        if len(chunk['Penalties']) > 1: # if there's any penalties in the XML
+            # print(chunk['Penalties']['Item'])
+            # loop over penalties and create SBPenalty objects
+            for penalty in chunk['Penalties']['Item']:
+                #print(penalty)
+                number = penalty['PlayerNumber']['Value']['#text']
+                timeLeft = penalty['PenaltyTime']['CurrentTime']['#text'] # ['PenaltyTime']['Value']['#text']
+                #print("penalty to ", number, timeLeft)
+
+                crime = False
+                thisPen = SBPenalty(Number = int(number), timeLeft = timeLeft, crime = crime)
+                Penalties.append(thisPen)
+        else:
+            Penalties = False
+        return Penalties
 
 
     def timeFromScoreBoard(self, timeString):
