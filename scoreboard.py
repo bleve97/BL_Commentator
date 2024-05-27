@@ -55,8 +55,8 @@ class ScoreBoard:
                     self.Period = 2
                 if Period == "3":
                     self.Period = 3
-                if Period == "o":
-                    self.Period = False
+                if Period == "E":
+                    self.Period = "OT"
 
             # TEAM 1 ITEMS
             for x in dict_data[2].findall('Team1Name'):

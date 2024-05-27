@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">17:58</CurrentTime>
+			<CurrentTime Type="String">13:33</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">11:12</Value>
+			<Value Type="String">11:42</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -42,28 +42,7 @@
 			<Value Type="String">0</Value>
 		</Team1Fouls>
 		<Team1Penalties Type="Object">
-			<Penalties Type="Array">
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
-						<Value Type="String">4</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">1:00</CurrentTime>
-						<Running Type="String">False</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
-						<Value Type="String">6</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">4:00</CurrentTime>
-						<Running Type="String">False</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-			</Penalties>
+			<Penalties Type="Array" />
 		</Team1Penalties>
 		<Team2Score Type="Object">
 			<Value Type="String">4</Value>
@@ -81,7 +60,7 @@
 						<Value Type="String">22</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">4:34</CurrentTime>
+						<CurrentTime Type="String">0:10</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -89,7 +68,7 @@
 			</Penalties>
 		</Team2Penalties>
 		<Period Type="Object">
-			<Value Type="String">3</Value>
+			<Value Type="String">2</Value>
 		</Period>
 		<Goal Type="Object">
 			<Value Type="String">None</Value>
