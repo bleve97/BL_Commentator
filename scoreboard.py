@@ -43,7 +43,7 @@ class ScoreBoard:
 
             #print("myroot :", dict_data[2].findall('Period').text)
             for x in dict_data[2].findall('PeriodTime'):
-                self.PeriodTimeLeft = x.find('CurrentTime').text
+                self.PeriodTimeLeft = self.timeFromScoreBoard(x.find('CurrentTime').text)
                 print(self.PeriodTimeLeft)
 
             # CURRENT PERIOD
@@ -81,14 +81,10 @@ class ScoreBoard:
                 if x.find('Value').text != "":
                    self.AwayTeamShots = x.find('Value').text
 
-            for x in dict_data[2].findall('PeriodTime'):
-                print (x.find('Value').text)
-                self.PeriodStatus = True
-
             #if dict_data['Data']['ScoreboardFields']['PeriodTime']['Running']['#text'] == 'False':
             #    self.PeriodStatus = False
             #else:
-            #    self.PeriodStatus = True
+            self.PeriodStatus = True
 
 
 
