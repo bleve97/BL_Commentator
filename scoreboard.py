@@ -86,8 +86,6 @@ class ScoreBoard:
             #else:
             self.PeriodStatus = True
 
-
-
             # penalties, the XML :
             self.HomeTeamPenalties = False
             self.AwayTeamPenalties = False
