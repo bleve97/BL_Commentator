@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="JSON works, XML WIP penaltiy parsing" />
+=======
+    <list default="true" id="2da35e55-bdeb-4b4d-89f2-d98342e022c5" name="Changes" comment="switrch to elemttree from xmltodict">
+      <change beforePath="$PROJECT_DIR$/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
+    </list>
+>>>>>>> b9d3fb3608e7c275725fd451b27c527c32756d40
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -308,6 +314,7 @@
       <option name="project" value="LOCAL" />
       <updated>1716618193005</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00013" summary="JSON works, XML WIP penaltiy parsing">
       <option name="closed" value="true" />
       <created>1716787338649</created>
@@ -325,6 +332,17 @@
       <updated>1716787362129</updated>
     </task>
     <option name="localTasksCounter" value="15" />
+=======
+    <task id="LOCAL-00013" summary="switrch to elemttree from xmltodict">
+      <option name="closed" value="true" />
+      <created>1716800661566</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800661566</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+>>>>>>> b9d3fb3608e7c275725fd451b27c527c32756d40
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -340,7 +358,12 @@
     <MESSAGE value="starting to grok penalties from the scoreboard" />
     <MESSAGE value="gets everything it can from the scoreboard using JSON not XML formatting. A couple of tidyups and refactoring." />
     <MESSAGE value="minor cleanups" />
+<<<<<<< HEAD
     <MESSAGE value="JSON works, XML WIP penaltiy parsing" />
     <option name="LAST_COMMIT_MESSAGE" value="JSON works, XML WIP penaltiy parsing" />
+=======
+    <MESSAGE value="switrch to elemttree from xmltodict" />
+    <option name="LAST_COMMIT_MESSAGE" value="switrch to elemttree from xmltodict" />
+>>>>>>> b9d3fb3608e7c275725fd451b27c527c32756d40
   </component>
 </project>

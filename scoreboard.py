@@ -6,13 +6,15 @@ import xml.etree.ElementTree as ET
 import commclasses as CC
 from lxml import etree
 import xmltodict
+import xml.etree.ElementTree as ET
 import json
 import re
 
 class SBPenalty:
-    def __init__(self, Number, timeLeft, crime):
+    def __init__(self, Number, timeLeft, crime, duration = 120):
         self.Number = Number
         self.timeLeft = timeLeft
+        self.duration = duration
         self.crime = crime
 
 
@@ -27,40 +29,68 @@ class ScoreBoard:
 
     def load(self, SBSourceFile):
         # all the shit is in here, hard coded XML parsing tags. Yuk. Yuk. Yuk.
-        with open(SBSourceFile) as SB_file:
-            rawSBdata = SB_file.read()
-            SB_file.close()
-        try:    # XML or JSON?
-            dict_data = xmltodict.parse(rawSBdata)
-            print("XML")
+        #with open(SBSourceFile) as SB_file:
+        #    rawSBdata = SB_file.read()
+        #    SB_file.close()
+        #try:    # XML or JSON?
 
-            self.SBVersion = dict_data['Data']['Version']['#text']
-            self.SBName = dict_data['Data']['Scoreboard']['#text']
+        try:
+            mytree = ET.parse(SBSourceFile)
+            dict_data = mytree.getroot()
 
-            if dict_data['Data']['ScoreboardFields']['PeriodTime']['Running']['#text'] == 'False':
-                self.PeriodStatus = False
-            else:
-                self.PeriodStatus = True
+            self.SBVersion = dict_data[1].text
+            self.SBName = dict_data[0].text
 
-            self.Period = int(dict_data['Data']['ScoreboardFields']['Period']['Value']['#text'])
-            # to get time left, we'll need a bit of regex magic
-            self.PeriodTimeLeft = self.timeFromScoreBoard(
-                dict_data['Data']['ScoreboardFields']['PeriodTime']['CurrentTime']['#text'])
+            #print("myroot :", dict_data[2].findall('Period').text)
+            for x in dict_data[2].findall('PeriodTime'):
+                self.PeriodTimeLeft = self.timeFromScoreBoard(x.find('CurrentTime').text)
+                print(self.PeriodTimeLeft)
 
-            self.HomeTeamName = dict_data['Data']['ScoreboardFields']['Team1Name']['Value']['#text']
-            self.AwayTeamName = dict_data['Data']['ScoreboardFields']['Team2Name']['Value']['#text']
+            # CURRENT PERIOD
+            for x in dict_data[2].findall('Period'):
+                Period = x.find('Value').text
+                if Period == "1":
+                    self.Period = 1
+                if Period == "2":
+                    self.Period = 2
+                if Period == "3":
+                    self.Period = 3
+                if Period == "o":
+                    self.Period = False
 
-            self.HomeTeamScore = dict_data['Data']['ScoreboardFields']['Team1Score']['Value']['#text']
-            self.AwayTeamScore = dict_data['Data']['ScoreboardFields']['Team2Score']['Value']['#text']
+            # TEAM 1 ITEMS
+            for x in dict_data[2].findall('Team1Name'):
+                self.HomeTeamName = x.find('Value').text
 
-            self.HomeTeamShots = dict_data['Data']['ScoreboardFields']['Team1ShotsOnGoal']['Value']['#text']
-            self.AwayTeamShots = dict_data['Data']['ScoreboardFields']['Team2ShotsOnGoal']['Value']['#text']
+            for x in dict_data[2].findall('Team1Score'):
+                if x.find('Value').text != "":
+                    self.HomeTeamScore = x.find('Value').text
+
+            for x in dict_data[2].findall('Team1ShotsOnGoal'):
+                if x.find('Value').text != "":
+                    self.HomeTeamShots = x.find('Value').text
+
+            # TEAM 2 ITEMS
+            for x in dict_data[2].findall('Team2Name'):
+                self.AwayTeamName = x.find('Value').text
+            for x in dict_data[2].findall('Team2Score'):
+                if x.find('Value').text != "":
+                    self.AwayTeamScore = x.find('Value').text
+
+            for x in dict_data[2].findall('Team2ShotsOnGoal'):
+                if x.find('Value').text != "":
+                   self.AwayTeamShots = x.find('Value').text
+
+            #if dict_data['Data']['ScoreboardFields']['PeriodTime']['Running']['#text'] == 'False':
+            #    self.PeriodStatus = False
+            #else:
+            self.PeriodStatus = True
 
             # penalties, the XML :
             self.HomeTeamPenalties = False
             self.AwayTeamPenalties = False
-            self.HomeTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team1Penalties']['Penalties'])
-            self.AwayTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team2Penalties']['Penalties'])
+            #self.HomeTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team1Penalties']['Penalties'])
+            #self.AwayTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team2Penalties']['Penalties'])
         except: # JSON?
             print("cocks!")
             exit()
