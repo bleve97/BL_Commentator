@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">18:58</CurrentTime>
+			<CurrentTime Type="String">17:58</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">8:16</Value>
+			<Value Type="String">11:12</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -33,7 +33,7 @@
 			<Value Type="String">GUEST</Value>
 		</Team2Name>
 		<Team1Score Type="Object">
-			<Value Type="String">9</Value>
+			<Value Type="String">4</Value>
 		</Team1Score>
 		<Team1ShotsOnGoal Type="Object">
 			<Value Type="String">12</Value>
@@ -48,7 +48,7 @@
 						<Value Type="String">4</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">2:00</CurrentTime>
+						<CurrentTime Type="String">1:00</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -58,7 +58,7 @@
 						<Value Type="String">6</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">5:00</CurrentTime>
+						<CurrentTime Type="String">4:00</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -66,7 +66,7 @@
 			</Penalties>
 		</Team1Penalties>
 		<Team2Score Type="Object">
-			<Value Type="String">8</Value>
+			<Value Type="String">4</Value>
 		</Team2Score>
 		<Team2ShotsOnGoal Type="Object">
 			<Value Type="String">14</Value>
@@ -75,7 +75,18 @@
 			<Value Type="String">0</Value>
 		</Team2Fouls>
 		<Team2Penalties Type="Object">
-			<Penalties Type="Array" />
+			<Penalties Type="Array">
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">22</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">4:34</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+			</Penalties>
 		</Team2Penalties>
 		<Period Type="Object">
 			<Value Type="String">3</Value>

@@ -21,6 +21,6 @@ gameID = defaultGameID
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
 # ScoreBoardFile = "JSON samples/Livefeed"
-# ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
-ScoreBoardFile = 'i:/Livefeedv2'
+ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
+# ScoreBoardFile = 'i:/Livefeedv2'
 

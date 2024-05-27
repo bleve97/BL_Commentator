@@ -5,7 +5,7 @@ import time
 import xml.etree.ElementTree as ET
 import commclasses as CC
 from lxml import etree
-import xmltodict
+#import xmltodict
 import xml.etree.ElementTree as ET
 import json
 import re
@@ -87,8 +87,9 @@ class ScoreBoard:
             self.PeriodStatus = True
 
             # penalties, the XML :
-            self.HomeTeamPenalties = False
-            self.AwayTeamPenalties = False
+
+            self.HomeTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team1Penalties'))
+            self.AwayTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team2Penalties'))
             #self.HomeTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team1Penalties']['Penalties'])
             #self.AwayTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team2Penalties']['Penalties'])
         except: # JSON?
@@ -143,36 +144,24 @@ class ScoreBoard:
         return Penalties
 
     def parseXMLPenalties(self, chunk):
-        print("parsing XML chunk:", chunk)
-        print("len(chunk) : ", len(chunk))
-        # print("Pen: ",chunk['Penalties'])
-        # print(chunk.tag, chunk.attrib)
-        # exit()
+        # print("parsing XML chunk:", chunk)
+        # print("tags :", chunk[0].tag, chunk[0].attrib)
         Penalties = []
-        # print("len : ",len(chunk))
-        if len(chunk) > 1: # if there's any penalties in the XML
-            print("looping on", chunk)
-            print("chunk.items()", chunk.items())
-            # loop over penalties and create SBPenalty objects
-            for penalty in chunk.items():
-                print("inside :", penalty)
-                print("which is a ", type(penalty))
-                for key in penalty.keys():
-                    print("key", key)
 
-                number = chunk[penalty]
-                # number = 5
-                print("num : ", number)
-                # timeLeft = penalty['PenaltyTime']['CurrentTime']['#text'] # ['PenaltyTime']['Value']['#text']
-                timeLeft = 55
-                print("penalty to ", number, timeLeft)
-
+        for y in chunk[0]:
+            # print("looping on y", y.tag, y.attrib)
+            # print("bar :", y.findall('PenaltyTime'))
+            for child in y:
+                # print(child.tag, child.attrib)
+                PenaltyCurrentTime = child.find('PenaltyTime').find('CurrentTime').text
+                PenaltyPlayerNumber = child.find('PlayerNumber').find('Value').text
+                # print("PCT: ", PenaltyCurrentTime, "to :", PenaltyPlayerNumber)
                 crime = False
-                thisPen = SBPenalty(Number = int(number), timeLeft = timeLeft, crime = crime)
+                thisPen = SBPenalty(Number = int(PenaltyPlayerNumber), timeLeft = PenaltyCurrentTime, crime = crime)
                 Penalties.append(thisPen)
-        else:
-            print("no penalty")
-            Penalties = False
+        # else:
+            # print("no penalty")
+            # Penalties = False
         return Penalties
 
 
