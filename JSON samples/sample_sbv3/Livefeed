@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">17:19</CurrentTime>
+			<CurrentTime Type="String">18:58</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">12:06</Value>
+			<Value Type="String">3:22</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -33,10 +33,10 @@
 			<Value Type="String">GUEST</Value>
 		</Team2Name>
 		<Team1Score Type="Object">
-			<Value Type="String">5</Value>
+			<Value Type="String">9</Value>
 		</Team1Score>
 		<Team1ShotsOnGoal Type="Object">
-			<Value Type="String">10</Value>
+			<Value Type="String">12</Value>
 		</Team1ShotsOnGoal>
 		<Team1Fouls Type="Object">
 			<Value Type="String">0</Value>
@@ -45,10 +45,20 @@
 			<Penalties Type="Array">
 				<Item Type="Object">
 					<PlayerNumber Type="Object">
-						<Value Type="String">5</Value>
+						<Value Type="String">4</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">1:56</CurrentTime>
+						<CurrentTime Type="String">2:00</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">6</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">5:00</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -56,10 +66,10 @@
 			</Penalties>
 		</Team1Penalties>
 		<Team2Score Type="Object">
-			<Value Type="String">6</Value>
+			<Value Type="String">8</Value>
 		</Team2Score>
 		<Team2ShotsOnGoal Type="Object">
-			<Value Type="String">7</Value>
+			<Value Type="String">14</Value>
 		</Team2ShotsOnGoal>
 		<Team2Fouls Type="Object">
 			<Value Type="String">0</Value>
@@ -68,7 +78,7 @@
 			<Penalties Type="Array" />
 		</Team2Penalties>
 		<Period Type="Object">
-			<Value Type="String">2</Value>
+			<Value Type="String">3</Value>
 		</Period>
 		<Goal Type="Object">
 			<Value Type="String">None</Value>
