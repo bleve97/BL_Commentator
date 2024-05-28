@@ -45,7 +45,10 @@ class ScoreBoard:
             for x in dict_data[2].findall('PeriodTime'):
                 self.PeriodTimeLeft = self.timeFromScoreBoard(x.find('CurrentTime').text)
                 #print(self.PeriodTimeLeft)
-                self.PeriodStatus = x.find('Running').text
+                if (x.find('Running').text == "True"):
+                    self.PeriodStatus = True
+                else:
+                    self.PeriodStatus = False
                 #print('Running? : ', self.PeriodStatus)
 
             # CURRENT PERIOD
@@ -83,17 +86,11 @@ class ScoreBoard:
                 if x.find('Value').text != "":
                    self.AwayTeamShots = x.find('Value').text
 
-            #if dict_data['Data']['ScoreboardFields']['PeriodTime']['Running']['#text'] == 'False':
-            #    self.PeriodStatus = False
-            #else:
-            self.PeriodStatus = True
-
             # penalties, the XML :
 
             self.HomeTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team1Penalties'))
             self.AwayTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team2Penalties'))
-            #self.HomeTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team1Penalties']['Penalties'])
-            #self.AwayTeamPenalties = self.parseXMLPenalties(dict_data['Data']['ScoreboardFields']['Team2Penalties']['Penalties'])
+
         except: # JSON?
             print("cocks!")
             exit()

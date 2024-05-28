@@ -38,7 +38,7 @@ class InitialSetup(wx.Frame):
         #SBD = SB.ScoreBoard()
         print(SBD.SBName, SBD.SBVersion)
 
-        if(SBD.PeriodStatus):
+        if(SBD.PeriodStatus == True):
             print("Period :", SBD.Period, SBD.PeriodTimeLeft)
         else:
             print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
@@ -63,7 +63,7 @@ class InitialSetup(wx.Frame):
     def SBUpdate(self, event):
         #print("update the scoreboard data from the XML file")
         SBD.reload()
-        if (SBD.PeriodStatus):
+        if (SBD.PeriodStatus == True):
             print("Period", SBD.Period, ":", SBD.PeriodTimeLeft.minute,SBD.PeriodTimeLeft.second, end=' ')
             if (SBD.PeriodTimeLeft.microsecond):
                 print(SBD.PeriodTimeLeft.microsecond, end=' ; ')

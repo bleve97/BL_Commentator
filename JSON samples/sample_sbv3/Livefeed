@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">6:26</CurrentTime>
+			<CurrentTime Type="String">17:36</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">3:41</Value>
+			<Value Type="String">4:37</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -27,10 +27,10 @@
 			<Direction Type="String">Down</Direction>
 		</ShotClockTime>
 		<Team1Name Type="Object">
-			<Value Type="String">HOME</Value>
+			<Value Type="String">Goatse</Value>
 		</Team1Name>
 		<Team2Name Type="Object">
-			<Value Type="String">GUEST</Value>
+			<Value Type="String">herders with cheese</Value>
 		</Team2Name>
 		<Team1Score Type="Object">
 			<Value Type="String">4</Value>
@@ -42,7 +42,18 @@
 			<Value Type="String">0</Value>
 		</Team1Fouls>
 		<Team1Penalties Type="Object">
-			<Penalties Type="Array" />
+			<Penalties Type="Array">
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">55</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">1:06</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+			</Penalties>
 		</Team1Penalties>
 		<Team2Score Type="Object">
 			<Value Type="String">4</Value>
