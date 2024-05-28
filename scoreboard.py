@@ -45,6 +45,8 @@ class ScoreBoard:
             for x in dict_data[2].findall('PeriodTime'):
                 self.PeriodTimeLeft = self.timeFromScoreBoard(x.find('CurrentTime').text)
                 print(self.PeriodTimeLeft)
+                self.PeriodStatus = x.find('Running').text
+                print('Running? : ', self.PeriodStatus)
 
             # CURRENT PERIOD
             for x in dict_data[2].findall('Period'):
