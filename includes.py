@@ -6,11 +6,12 @@ API_URL_Base = "https://icehq.hockeysyte.com/api/"
 xsyte_id = 347
 
 # delay in seconds between polling the API - can be over-ridden
-DefaultJSONRefreshInterval = 10
+DefaultJSONRefreshInterval = int(10 * 1000) # seconds - wx Times is in miliseconds
 JSONRefreshInterval = DefaultJSONRefreshInterval
 
-DefaultScoreBoardPollIntervalSeconds = 0.5 # seconds
+DefaultScoreBoardPollIntervalSeconds = int(0.5 * 1000) # seconds
 ScoreBoardPollIntervalSeconds = DefaultScoreBoardPollIntervalSeconds
+HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
 
 # for testing!
 defaultGameID = 6548

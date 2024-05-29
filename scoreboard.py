@@ -92,7 +92,7 @@ class ScoreBoard:
             self.AwayTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team2Penalties'))
 
         except: # JSON?
-            print("cocks!")
+            print("JSON?")
             exit()
             #print("it's JSON not XML! w00t!")
             SBdata = json.loads(rawSBdata)

@@ -36,6 +36,7 @@ class InitialSetup(wx.Frame):
 
         self.PClock.SetFont(font)
         self.PClock.SetForegroundColour((0,0,0))
+        self.PClock.SetBackgroundColour((250,230,230))
 
 
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -68,8 +69,8 @@ class InitialSetup(wx.Frame):
         # the event loop that fetches scoreboard and xcite data
         self.SBTimer = wx.Timer(self, 1)
         self.XCITETimer = wx.Timer(self, 2)
-        self.SBTimer.Start(int(includes.ScoreBoardPollIntervalSeconds * 1000.0))
-        self.XCITETimer.Start(includes.JSONRefreshInterval * 1000)
+        self.SBTimer.Start(includes.ScoreBoardPollIntervalSeconds)
+        self.XCITETimer.Start(includes.JSONRefreshInterval)
         self.Bind(wx.EVT_TIMER, self.SBUpdate, id=1)
         self.Bind(wx.EVT_TIMER, self.XCiteUpdate, id=2)
         # end loop
@@ -81,25 +82,33 @@ class InitialSetup(wx.Frame):
         #self.FetchWindow(self)
 
     def SBUpdate(self, event):
+
         #print("update the scoreboard data from the XML file")
-
-
-
         SBD.reload()
-        ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
+
         PeriodString = "%s" % (str(SBD.Period))
-        print(ClockString)
-        self.PClock.SetLabel(ClockString)
+        #print(ClockString)
+        FullClockString = ""
+
+        ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
+        if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft.second > 0)):
+            # switch to high res with under a minute to go
+            if self.SBTimer.Interval == includes.ScoreBoardPollIntervalSeconds:
+                self.SBTimer.Start(includes.HiResScoreBoardPollIntervalSeconds)
+            print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
+            FullClockString = "%s.%d" % (ClockString, (SBD.PeriodTimeLeft.microsecond / 100000))
+        else:
+            # put the clock back to slower samples
+            if self.SBTimer.Interval == includes.HiResScoreBoardPollIntervalSeconds:
+                self.SBTimer.Start(includes.ScoreBoardPollIntervalSeconds)
+            FullClockString = ClockString
+        self.PClock.SetLabel(FullClockString)
+
         if (SBD.PeriodStatus == True):
             self.PClock.SetForegroundColour((0, 0, 0))
-            print("Period", SBD.Period, ":", SBD.PeriodTimeLeft.minute,SBD.PeriodTimeLeft.second, end=' ')
-            if (SBD.PeriodTimeLeft.microsecond):
-                print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
         else:
-            self.PClock.SetForegroundColour((255, 0, 0))
-            print("Period (paused)", SBD.Period, ":", SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second, end=' ')
-            if (SBD.PeriodTimeLeft.microsecond):
-                print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
+            self.PClock.SetForegroundColour((255,0,0))
+
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
             print(SBD.HomeTeamName, "Penalty : ", end='')
