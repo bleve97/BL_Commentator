@@ -50,6 +50,9 @@ class InitialSetup(wx.Frame):
         # PeriodSizer.Add(st)
         panel.SetSizer(PeriodSizer)
 
+        # split the box in half, we'll have HOME : AWAY sizers as half each for the rest of the
+
+
         # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
         # this is background, the loads -may- block, does wx have threads?!
         print(SBD.SBName, SBD.SBVersion)
