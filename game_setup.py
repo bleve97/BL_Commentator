@@ -1,4 +1,5 @@
 import wx
+import wx.gizmos as gizmos
 
 import includes
 import main
@@ -18,18 +19,37 @@ class InitialSetup(wx.Frame):
     def __init__(self, *args, **kw):
         super(InitialSetup, self).__init__(*args, **kw)
 
-        pnl = wx.Panel(self)
+        panel = wx.Panel(self)
 
 
-        st = wx.StaticText(pnl, label="Initial Game chooser")
+        st = wx.StaticText(panel, label="Scoreboard Mirror")
         font = st.GetFont()
         font.PointSize += 10
         font = font.Bold()
         st.SetFont(font)
 
+        # the game clock
+        self.PClock = wx.StaticText(panel, label="00:00", style=wx.ALIGN_CENTER)
+        font = self.PClock.GetFont()
+        font.PointSize += 10
+        font = font.Bold()
+
+        self.PClock.SetFont(font)
+        self.PClock.SetForegroundColour((0,0,0))
+
+
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(st, wx.SizerFlags().Border(wx.TOP|wx.LEFT, 25))
-        pnl.SetSizer(sizer)
+        panel.SetSizer(sizer)
+
+        #size = wx.DefaultSize
+        #style = gizmos.LED_ALIGN_CENTER
+        #pos = wx.DefaultPosition
+        #self.led = gizmos.LEDNumberCtrl(self, -1, pos, size, style)
+        # default colours are green on black
+        #self.led.SetBackgroundColour("blue")
+        #self.led.SetForegroundColour("yellow")
+        #self.led.SetValue("123456789")
 
 
         # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
@@ -45,14 +65,14 @@ class InitialSetup(wx.Frame):
         print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
         #print('Time left in period :', scoreboard.PeriodTimeLeft)
 
-
+        # the event loop that fetches scoreboard and xcite data
         self.SBTimer = wx.Timer(self, 1)
         self.XCITETimer = wx.Timer(self, 2)
         self.SBTimer.Start(int(includes.ScoreBoardPollIntervalSeconds * 1000.0))
         self.XCITETimer.Start(includes.JSONRefreshInterval * 1000)
         self.Bind(wx.EVT_TIMER, self.SBUpdate, id=1)
         self.Bind(wx.EVT_TIMER, self.XCiteUpdate, id=2)
-
+        # end loop
         self.makeMenuBar()
 
         self.CreateStatusBar()
@@ -62,12 +82,21 @@ class InitialSetup(wx.Frame):
 
     def SBUpdate(self, event):
         #print("update the scoreboard data from the XML file")
+
+
+
         SBD.reload()
+        ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
+        PeriodString = "%s" % (str(SBD.Period))
+        print(ClockString)
+        self.PClock.SetLabel(ClockString)
         if (SBD.PeriodStatus == True):
+            self.PClock.SetForegroundColour((0, 0, 0))
             print("Period", SBD.Period, ":", SBD.PeriodTimeLeft.minute,SBD.PeriodTimeLeft.second, end=' ')
             if (SBD.PeriodTimeLeft.microsecond):
                 print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
         else:
+            self.PClock.SetForegroundColour((255, 0, 0))
             print("Period (paused)", SBD.Period, ":", SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second, end=' ')
             if (SBD.PeriodTimeLeft.microsecond):
                 print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
