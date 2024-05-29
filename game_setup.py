@@ -91,7 +91,7 @@ class InitialSetup(wx.Frame):
         FullClockString = ""
 
         ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
-        if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft.second > 0)):
+        if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft > includes.zerotime)):
             # switch to high res with under a minute to go
             if self.SBTimer.Interval == includes.ScoreBoardPollIntervalSeconds:
                 self.SBTimer.Start(includes.HiResScoreBoardPollIntervalSeconds)

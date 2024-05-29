@@ -1,4 +1,6 @@
 
+
+import time, datetime
 AppName = "BL Commentator"
 Version = "0.1a1"
 
@@ -25,3 +27,4 @@ QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + s
 ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
 # ScoreBoardFile = 'i:/Livefeedv2'
 
+zerotime = datetime.time(minute=0, second=0, microsecond=0)
