@@ -13,7 +13,9 @@ JSONRefreshInterval = DefaultJSONRefreshInterval
 
 DefaultScoreBoardPollIntervalSeconds = int(0.5 * 1000) # seconds
 ScoreBoardPollIntervalSeconds = DefaultScoreBoardPollIntervalSeconds
-HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
+# HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
+HiResScoreBoardPollIntervalSeconds = int(0.5 * 1000) # 0.1 breaks at iceHQ?
+
 
 # for testing!
 defaultGameID = 6548

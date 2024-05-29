@@ -134,7 +134,7 @@ class InitialSetup(wx.Frame):
                 self.SBTimer.Start(includes.ScoreBoardPollIntervalSeconds)
             FullClockString = ClockString
         self.PClock.SetLabel(FullClockString)
-
+        print(FullClockString)
         if (SBD.PeriodStatus == True):
             self.PClock.SetForegroundColour((0, 0, 0))
         else:
@@ -143,6 +143,7 @@ class InitialSetup(wx.Frame):
         self.homeScore.Label = homeTeamFullScore
         awayTeamFullScore = "%d (%d)" % (int(SBD.AwayTeamScore), int(SBD.AwayTeamShots))
         self.awayScore.Label = awayTeamFullScore
+
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
             print(SBD.HomeTeamName, "Penalty : ", end='')
