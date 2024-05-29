@@ -25,6 +25,7 @@ class ScoreBoard:
         print("Opening ", includes.ScoreBoardFile)
         #root = etree.parse(includes.ScoreBoardFile)
         self.load(includes.ScoreBoardFile)
+        print("opened")
 
 
     def load(self, SBSourceFile):
@@ -70,22 +71,27 @@ class ScoreBoard:
             for x in dict_data[2].findall('Team1Score'):
                 if x.find('Value').text != "":
                     self.HomeTeamScore = x.find('Value').text
+            if not self.HomeTeamScore:
+                self.HomeTeamScore = 0
 
             for x in dict_data[2].findall('Team1ShotsOnGoal'):
                 if x.find('Value').text != "":
                     self.HomeTeamShots = x.find('Value').text
-
+            if not self.HomeTeamShots:
+                self.HomeTeamShots = 0
             # TEAM 2 ITEMS
             for x in dict_data[2].findall('Team2Name'):
                 self.AwayTeamName = x.find('Value').text
             for x in dict_data[2].findall('Team2Score'):
                 if x.find('Value').text != "":
                     self.AwayTeamScore = x.find('Value').text
-
+            if not self.AwayTeamScore:
+                self.AwayTeamScore = 0
             for x in dict_data[2].findall('Team2ShotsOnGoal'):
                 if x.find('Value').text != "":
                    self.AwayTeamShots = x.find('Value').text
-
+            if not self.AwayTeamShots:
+                self.AwayTeamShots = 0
             # penalties, the XML :
 
             self.HomeTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team1Penalties'))

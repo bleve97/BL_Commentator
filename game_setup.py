@@ -42,17 +42,48 @@ class InitialSetup(wx.Frame):
         self.WhatPeriodBox = wx.StaticText(panel, label=self.WhatPeriodText, style=wx.ALIGN_CENTRE)
         self.WhatPeriodBox.SetFont(font)
 
-
+        mainSizer = wx.BoxSizer(orient=wx.VERTICAL)
 
         PeriodSizer = wx.BoxSizer()
         PeriodSizer.Add(self.WhatPeriodBox)
         PeriodSizer.Add(self.PClock)
         # PeriodSizer.Add(st)
-        panel.SetSizer(PeriodSizer)
+        #panel.SetSizer(PeriodSizer)
 
+        mainSizer.Add(PeriodSizer)
         # split the box in half, we'll have HOME : AWAY sizers as half each for the rest of the
+        homeawaySizer = wx.BoxSizer(orient=wx.HORIZONTAL)
+        homeSizer = wx.BoxSizer(orient=wx.VERTICAL)
+        awaySizer = wx.BoxSizer(orient=wx.VERTICAL)
+        homeawaySizer.Add(homeSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+        homeawaySizer.Add(awaySizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+        self.homeTag = wx.StaticText(panel,label="HOME")
+        self.homeTag.SetFont(font)
+        self.homeScore = wx.StaticText(panel, label="0")
+        self.homeScore.SetFont(font)
+        self.homeShots = wx.StaticText(panel, label="0")
+        self.homeShots.SetFont(font)
+        self.awayScore = wx.StaticText(panel, label="0")
+        self.awayScore.SetFont(font)
+        self.awayShots = wx.StaticText(panel, label="0")
+        self.awayShots.SetFont(font)
 
 
+        homeSizer.Add(self.homeTag)
+        homeSizer.Add((self.homeScore))
+        self.awayTag = wx.StaticText(panel,label="AWAY")
+        self.awayTag.SetFont(font)
+        awaySizer.Add(self.awayTag)
+        awaySizer.Add(self.awayScore)
+
+        mainSizer.Add(homeawaySizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+
+
+
+
+
+
+        panel.SetSizer(mainSizer)
         # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
         # this is background, the loads -may- block, does wx have threads?!
         print(SBD.SBName, SBD.SBVersion)
@@ -87,7 +118,8 @@ class InitialSetup(wx.Frame):
         PeriodString = "Period : %s" % (str(SBD.Period))
         #print(ClockString)
         FullClockString = ""
-
+        self.homeTag.Label = SBD.HomeTeamName
+        self.awayTag.Label = SBD.AwayTeamName
         self.WhatPeriodBox.SetLabel(PeriodString)
         ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
         if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft > includes.zerotime)):
@@ -107,7 +139,10 @@ class InitialSetup(wx.Frame):
             self.PClock.SetForegroundColour((0, 0, 0))
         else:
             self.PClock.SetForegroundColour((255,0,0))
-
+        homeTeamFullScore = "%d (%d)" % (int(SBD.HomeTeamScore), int(SBD.HomeTeamShots))
+        self.homeScore.Label = homeTeamFullScore
+        awayTeamFullScore = "%d (%d)" % (int(SBD.AwayTeamScore), int(SBD.AwayTeamShots))
+        self.awayScore.Label = awayTeamFullScore
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
             print(SBD.HomeTeamName, "Penalty : ", end='')
