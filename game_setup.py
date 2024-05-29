@@ -21,12 +21,11 @@ class InitialSetup(wx.Frame):
 
         panel = wx.Panel(self)
 
-
-        st = wx.StaticText(panel, label="Scoreboard Mirror")
-        font = st.GetFont()
-        font.PointSize += 10
-        font = font.Bold()
-        st.SetFont(font)
+        #st = wx.StaticText(panel, label="Scoreboard Mirror")
+        #font = st.GetFont()
+        #font.PointSize += 10
+        #font = font.Bold()
+        #st.SetFont(font)
 
         # the game clock
         self.PClock = wx.StaticText(panel, label="00:00", style=wx.ALIGN_CENTER)
@@ -38,25 +37,21 @@ class InitialSetup(wx.Frame):
         self.PClock.SetForegroundColour((0,0,0))
         self.PClock.SetBackgroundColour((250,230,230))
 
+        # the period identifier
+        self.WhatPeriodText = "no game yet"
+        self.WhatPeriodBox = wx.StaticText(panel, label=self.WhatPeriodText, style=wx.ALIGN_CENTRE)
+        self.WhatPeriodBox.SetFont(font)
 
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(st, wx.SizerFlags().Border(wx.TOP|wx.LEFT, 25))
-        panel.SetSizer(sizer)
 
-        #size = wx.DefaultSize
-        #style = gizmos.LED_ALIGN_CENTER
-        #pos = wx.DefaultPosition
-        #self.led = gizmos.LEDNumberCtrl(self, -1, pos, size, style)
-        # default colours are green on black
-        #self.led.SetBackgroundColour("blue")
-        #self.led.SetForegroundColour("yellow")
-        #self.led.SetValue("123456789")
 
+        PeriodSizer = wx.BoxSizer()
+        PeriodSizer.Add(self.WhatPeriodBox)
+        PeriodSizer.Add(self.PClock)
+        # PeriodSizer.Add(st)
+        panel.SetSizer(PeriodSizer)
 
         # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
         # this is background, the loads -may- block, does wx have threads?!
-        #self.SBLoadCounter = 0
-        #SBD = SB.ScoreBoard()
         print(SBD.SBName, SBD.SBVersion)
 
         if(SBD.PeriodStatus == True):
@@ -86,17 +81,18 @@ class InitialSetup(wx.Frame):
         #print("update the scoreboard data from the XML file")
         SBD.reload()
 
-        PeriodString = "%s" % (str(SBD.Period))
+        PeriodString = "Period : %s" % (str(SBD.Period))
         #print(ClockString)
         FullClockString = ""
 
+        self.WhatPeriodBox.SetLabel(PeriodString)
         ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
         if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft > includes.zerotime)):
             # switch to high res with under a minute to go
             if self.SBTimer.Interval == includes.ScoreBoardPollIntervalSeconds:
                 self.SBTimer.Start(includes.HiResScoreBoardPollIntervalSeconds)
             print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
-            FullClockString = "%s.%d" % (ClockString, (SBD.PeriodTimeLeft.microsecond / 100000))
+            FullClockString = "%02d.%d" % (SBD.PeriodTimeLeft.second, (SBD.PeriodTimeLeft.microsecond / 100000))
         else:
             # put the clock back to slower samples
             if self.SBTimer.Interval == includes.HiResScoreBoardPollIntervalSeconds:

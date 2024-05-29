@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">47.2</CurrentTime>
+			<CurrentTime Type="String">51.2</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">2:14</Value>
+			<Value Type="String">5:04</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -57,7 +57,7 @@
 			<Penalties Type="Array" />
 		</Team2Penalties>
 		<Period Type="Object">
-			<Value Type="String">2</Value>
+			<Value Type="String">1</Value>
 		</Period>
 		<Goal Type="Object">
 			<Value Type="String">None</Value>
