@@ -20,12 +20,8 @@ class InitialSetup(wx.Frame):
         super(InitialSetup, self).__init__(*args, **kw)
 
         panel = wx.Panel(self)
+        mainSizer = wx.BoxSizer(orient=wx.VERTICAL)
 
-        #st = wx.StaticText(panel, label="Scoreboard Mirror")
-        #font = st.GetFont()
-        #font.PointSize += 10
-        #font = font.Bold()
-        #st.SetFont(font)
 
         # the game clock
         self.PClock = wx.StaticText(panel, label="00:00", style=wx.ALIGN_CENTER)
@@ -42,11 +38,10 @@ class InitialSetup(wx.Frame):
         self.WhatPeriodBox = wx.StaticText(panel, label=self.WhatPeriodText, style=wx.ALIGN_CENTRE)
         self.WhatPeriodBox.SetFont(font)
 
-        mainSizer = wx.BoxSizer(orient=wx.VERTICAL)
 
         PeriodSizer = wx.BoxSizer()
-        PeriodSizer.Add(self.WhatPeriodBox)
-        PeriodSizer.Add(self.PClock)
+        PeriodSizer.Add(self.WhatPeriodBox, border=5)
+        PeriodSizer.Add(self.PClock, border=5)
         # PeriodSizer.Add(st)
         #panel.SetSizer(PeriodSizer)
 
@@ -55,14 +50,20 @@ class InitialSetup(wx.Frame):
         homeawaySizer = wx.BoxSizer(orient=wx.HORIZONTAL)
         homeSizer = wx.BoxSizer(orient=wx.VERTICAL)
         awaySizer = wx.BoxSizer(orient=wx.VERTICAL)
+        homeScoreSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
+        awayScoreSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
         homeawaySizer.Add(homeSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
         homeawaySizer.Add(awaySizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+
         self.homeTag = wx.StaticText(panel,label="HOME")
         self.homeTag.SetFont(font)
         self.homeScore = wx.StaticText(panel, label="0")
         self.homeScore.SetFont(font)
         self.homeShots = wx.StaticText(panel, label="0")
         self.homeShots.SetFont(font)
+
+        self.awayTag = wx.StaticText(panel, label="AWAY")
+        self.awayTag.SetFont(font)
         self.awayScore = wx.StaticText(panel, label="0")
         self.awayScore.SetFont(font)
         self.awayShots = wx.StaticText(panel, label="0")
@@ -70,13 +71,24 @@ class InitialSetup(wx.Frame):
 
 
         homeSizer.Add(self.homeTag)
-        homeSizer.Add((self.homeScore))
-        self.awayTag = wx.StaticText(panel,label="AWAY")
-        self.awayTag.SetFont(font)
+        homeSizer.Add(homeScoreSizer)
+        homeScoreSizer.Add(self.homeScore, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+        homeScoreSizer.Add(self.homeShots, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+
         awaySizer.Add(self.awayTag)
-        awaySizer.Add(self.awayScore)
+        awaySizer.Add(awayScoreSizer)
+        awayScoreSizer.Add(self.awayScore, proportion=1, flag=wx.ALL | wx.EXPAND, border=5)
+        awayScoreSizer.Add(self.awayShots, proportion=1, flag=wx.ALL | wx.EXPAND, border=5)
 
         mainSizer.Add(homeawaySizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+
+        penSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
+        homePenSizer = wx.BoxSizer(orient=wx.VERTICAL)
+        awayPenSizer = wx.BoxSizer(orient=wx.VERTICAL)
+        penSizer.Add(homePenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
+        penSizer.Add(awayPenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
+
+        mainSizer.Add(penSizer)
 
 
 
@@ -103,6 +115,8 @@ class InitialSetup(wx.Frame):
         self.Bind(wx.EVT_TIMER, self.SBUpdate, id=1)
         self.Bind(wx.EVT_TIMER, self.XCiteUpdate, id=2)
         # end loop
+
+
         self.makeMenuBar()
 
         self.CreateStatusBar()
@@ -142,9 +156,15 @@ class InitialSetup(wx.Frame):
         else:
             self.PClock.SetForegroundColour((255,0,0))
         homeTeamFullScore = "%d (%d)" % (int(SBD.HomeTeamScore), int(SBD.HomeTeamShots))
-        self.homeScore.Label = homeTeamFullScore
+        self.homeScore.Label = SBD.HomeTeamScore
+        self.homeShots.Label = SBD.HomeTeamShots
+        #self.homeFullScore.Label = homeTeamFullScore
         awayTeamFullScore = "%d (%d)" % (int(SBD.AwayTeamScore), int(SBD.AwayTeamShots))
-        self.awayScore.Label = awayTeamFullScore
+        #self.awayFullScore.Label = awayTeamFullScore
+        self.awayScore.Label = SBD.AwayTeamScore
+        self.awayShots.Label = SBD.AwayTeamShots
+
+
 
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
