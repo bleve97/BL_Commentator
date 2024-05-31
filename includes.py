@@ -13,8 +13,8 @@ JSONRefreshInterval = DefaultJSONRefreshInterval
 
 DefaultScoreBoardPollIntervalSeconds = int(0.5 * 1000) # seconds
 ScoreBoardPollIntervalSeconds = DefaultScoreBoardPollIntervalSeconds
-HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
-# HiResScoreBoardPollIntervalSeconds = int(0.5 * 1000) # 0.1 breaks at iceHQ?
+# HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
+HiResScoreBoardPollIntervalSeconds = int(0.5 * 1000) # 0.1 breaks at iceHQ?
 
 PenDefaultPlayerName = "Marty McSorley"
 PenDefaultCrime = "Gooning"
@@ -28,7 +28,7 @@ gameID = defaultGameID
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
 # ScoreBoardFile = "JSON samples/Livefeed"
-ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
-# ScoreBoardFile = 'i:/Livefeedv2'
+# ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
+ScoreBoardFile = 'i:/Livefeedv2'
 
 zerotime = datetime.time(minute=0, second=0, microsecond=0)
