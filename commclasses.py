@@ -126,6 +126,8 @@ class Goal(Base):
 class Penalty(Base):
     __tablename__ = "penalties"
     PenaltyID: Mapped[int] = mapped_column(primary_key=True)
+    timeLeft = 0 # we get this from the scoreboard
+    # Player
 
 
 class Shot(Base):

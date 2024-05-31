@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">51.5</CurrentTime>
+			<CurrentTime Type="String">19:48</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">10:42</Value>
+			<Value Type="String">10:47</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -45,20 +45,10 @@
 			<Penalties Type="Array">
 				<Item Type="Object">
 					<PlayerNumber Type="Object">
-						<Value Type="String">5</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">0:07</CurrentTime>
-						<Running Type="String">False</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
 						<Value Type="String">18</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">3:15</CurrentTime>
+						<CurrentTime Type="String">3:03</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -81,27 +71,7 @@
 						<Value Type="String">13</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">0:52</CurrentTime>
-						<Running Type="String">False</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
-						<Value Type="String">15</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">3:57</CurrentTime>
-						<Running Type="String">False</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
-						<Value Type="String">1</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">10:00</CurrentTime>
+						<CurrentTime Type="String">0:39</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
