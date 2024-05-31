@@ -85,13 +85,15 @@ class InitialSetup(wx.Frame):
         #penSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
         homePenSizer = wx.BoxSizer(orient=wx.VERTICAL)
         awayPenSizer = wx.BoxSizer(orient=wx.VERTICAL)
-        homeSizer.Add(homePenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
+        homeSizer.Add(homePenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 1)
         awaySizer.Add(awayPenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
 
-        self.homePenTag = wx.StaticText(panel, label = "no PK")
+        self.homePenTag = wx.StaticText(panel, label = "")
+        self.homePenTag.SetFont(font)
         homePenSizer.Add(self.homePenTag)
 
-        self.awayPenTag = wx.StaticText(panel, label="no PK")
+        self.awayPenTag = wx.StaticText(panel, label="")
+        self.awayPenTag.SetFont(font)
         awayPenSizer.Add(self.awayPenTag)
 
         #mainSizer.Add(penSizer)
