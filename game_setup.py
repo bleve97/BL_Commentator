@@ -82,13 +82,19 @@ class InitialSetup(wx.Frame):
 
         mainSizer.Add(homeawaySizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
 
-        penSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
+        #penSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
         homePenSizer = wx.BoxSizer(orient=wx.VERTICAL)
         awayPenSizer = wx.BoxSizer(orient=wx.VERTICAL)
-        penSizer.Add(homePenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
-        penSizer.Add(awayPenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
+        homeSizer.Add(homePenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
+        awaySizer.Add(awayPenSizer, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 2)
 
-        mainSizer.Add(penSizer)
+        self.homePenTag = wx.StaticText(panel, label = "no PK")
+        homePenSizer.Add(self.homePenTag)
+
+        self.awayPenTag = wx.StaticText(panel, label="no PK")
+        awayPenSizer.Add(self.awayPenTag)
+
+        #mainSizer.Add(penSizer)
 
 
 
@@ -168,13 +174,23 @@ class InitialSetup(wx.Frame):
 
         print(SBD.HomeTeamName, ": ", SBD.HomeTeamScore, " (", SBD.HomeTeamShots,") ", SBD.AwayTeamName, ": ", SBD.AwayTeamScore, " (", SBD.AwayTeamShots, ") ", sep='')
         if SBD.HomeTeamPenalties:
+            homePenString = ""
             print(SBD.HomeTeamName, "Penalty : ", end='')
             for penalty in SBD.HomeTeamPenalties:
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
+                homePenString += str(penalty.Number) + " : " + penalty.timeLeft + "\n"
+            self.homePenTag.Label = homePenString
+        else:
+            self.homePenTag.Label = ""
         if SBD.AwayTeamPenalties:
+            awayPenString = ""
             print(SBD.AwayTeamName, "Penalty : ", end='')
             for penalty in SBD.AwayTeamPenalties:
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
+                awayPenString += str(penalty.Number) + " : " + penalty.timeLeft + "\n"
+            self.awayPenTag.Label = awayPenString
+        else:
+            self.awayPenTag.Label = ""
         if (SBD.HomeTeamPenalties or SBD.AwayTeamPenalties):
             print()
 
