@@ -13,6 +13,8 @@ import scoreboard as SB
 SBD = SB.ScoreBoard()
 ThisGame = CC.Game(GameID=includes.defaultGameID)
 xciteGameDataSnapshot = fetcher.getGameData(game_id=includes.gameID)
+HomePlayersByNum = {}
+AwayPlayersByNum = {}
 
 
 class InitialSetup(wx.Frame):
@@ -179,8 +181,11 @@ class InitialSetup(wx.Frame):
             homePenString = ""
             print(SBD.HomeTeamName, "Penalty : ", end='')
             for penalty in SBD.HomeTeamPenalties:
+                criminal = ""
+                if penalty.Number in HomePlayersByNum:
+                    criminal = " " + HomePlayersByNum[penalty.Number].SirName
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
-                homePenString += str(penalty.Number) + " : " + penalty.timeLeft + "\n"
+                homePenString += str(penalty.Number) + criminal + " : " + penalty.timeLeft + "\n"
             self.homePenTag.Label = homePenString
         else:
             self.homePenTag.Label = ""
@@ -188,8 +193,11 @@ class InitialSetup(wx.Frame):
             awayPenString = ""
             print(SBD.AwayTeamName, "Penalty : ", end='')
             for penalty in SBD.AwayTeamPenalties:
+                criminal = ""
+                if penalty.Number in AwayPlayersByNum:
+                    criminal = " " + HomePlayersByNum[penalty.Number].SirName
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
-                awayPenString += str(penalty.Number) + " : " + penalty.timeLeft + "\n"
+                awayPenString += str(penalty.Number) + criminal + " : " + penalty.timeLeft + "\n"
             self.awayPenTag.Label = awayPenString
         else:
             self.awayPenTag.Label = ""
@@ -250,7 +258,28 @@ class InitialSetup(wx.Frame):
         # teams = gameDataSnapshot["teams"][0]["team_full_name"] + " vs " + gameDataSnapshot["teams"][1]["team_full_name"]
         CC.HomeTeam.Name = gameDataSnapshot["teams"][0]["team_full_name"]
         CC.AwayTeam.Name = gameDataSnapshot["teams"][1]["team_full_name"]
-        #print(gameDataSnapshot["fetchedAt"])
+        HomePlayersFromHS = gameDataSnapshot['teams'][0]['roster']
+        AwayPlayersFromHS = gameDataSnapshot['teams'][1]['roster']
+        for HomePlayerFromHS in HomePlayersFromHS:
+            # print(HomePlayerFromHS)
+            player = CC.Player(FirstName=HomePlayerFromHS['firstname'], SirName=HomePlayerFromHS['lastname'],
+                               xcitePlayerID=int(HomePlayerFromHS['player_id']),
+                               GameNumber=int(HomePlayerFromHS['jersey_number']))
+
+            # print('injecting : ", player.FirstName, player.)
+            HomePlayersByNum[player.GameNumber] = player
+            #exit()
+        for playerNum in HomePlayersByNum:
+            print(HomePlayersByNum[playerNum].FirstName, HomePlayersByNum[playerNum].SirName, HomePlayersByNum[playerNum].GameNumber)
+        for AwayPlayerFromHS in AwayPlayersFromHS:
+            player = CC.Player(FirstName=AwayPlayerFromHS['firstname'], SirName=AwayPlayerFromHS['lastname'],
+                               xcitePlayerID=int(AwayPlayerFromHS['player_id']),
+                               GameNumber=int(AwayPlayerFromHS['jersey_number']))
+            AwayPlayersByNum[player.GameNumber] = player
+        for playerNum in AwayPlayersByNum:
+            print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber)
+        # print(HomePlayersByNum)
+        # print(gameDataSnapshot["fetchedAt"])
         # print(str(teams))
         print("Home : ", CC.HomeTeam.Name, "Away : ", CC.AwayTeam.Name)
         print("Fetched at : " + str(gameDataSnapshot["fetchedAt"]))

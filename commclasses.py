@@ -94,6 +94,9 @@ class Game(Base):
 class Player(Base):
     __tablename__ = "players"
     PlayerID: Mapped[int] = mapped_column(primary_key=True)
+    FirstName: Mapped[str] = mapped_column(String(30))
+    SirName: Mapped[str] = mapped_column(String(30))
+    PronunciationGuide: Mapped[Optional[str]] = mapped_column(String(50))
     Number: Mapped[int]
     GameNumber : Mapped[int] # not always the same as their normal number, can be changed etc
     GamePIM: Mapped[int]
@@ -106,6 +109,10 @@ class Player(Base):
 
     xcitePlayerID: Mapped[int]
     #Team: Mapped["Team"] = relationship(back_populates="players")
+
+    def GetPlayerByNumber(self, number):
+        print("looking for Player No. ", number)
+        return False    # if no match
 
 
 
