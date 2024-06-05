@@ -36,7 +36,9 @@ class ScoreBoard:
         #try:    # XML or JSON?
 
         try:
-            mytree = ET.parse(SBSourceFile)
+            with open(SBSourceFile) as SB_File:
+                mytree = ET.parse(SB_File)
+                SB_File.close()
             dict_data = mytree.getroot()
 
             self.SBVersion = dict_data[1].text
