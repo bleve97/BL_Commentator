@@ -50,20 +50,23 @@ class ScoreBoard:
                     self.PeriodStatus = True
                 else:
                     self.PeriodStatus = False
+                    # if it's not running, we need to skip lots
                 #print('Running? : ', self.PeriodStatus)
 
             # CURRENT PERIOD
-            for x in dict_data[2].findall('Period'):
-                Period = x.find('Value').text
-                if Period == "1":
-                    self.Period = 1
-                if Period == "2":
-                    self.Period = 2
-                if Period == "3":
-                    self.Period = 3
-                if Period == "E":
-                    self.Period = "OT"
-
+            if (self.PeriodStatus):
+                for x in dict_data[2].findall('Period'):
+                    Period = x.find('Value').text
+                    if Period == "1":
+                        self.Period = 1
+                    if Period == "2":
+                        self.Period = 2
+                    if Period == "3":
+                        self.Period = 3
+                    if Period == "E":
+                        self.Period = "OT"
+            else:
+                self.Period = 0
             # TEAM 1 ITEMS
             for x in dict_data[2].findall('Team1Name'):
                 self.HomeTeamName = x.find('Value').text
