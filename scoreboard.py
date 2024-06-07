@@ -207,7 +207,7 @@ class ScoreBoard:
         #print(SBtime.minute, SBtime.second)
         #print(includes.LastMinSkipTime.minute, includes.LastMinSkipTime.second)
         SBTimeSeconds = (SBtime.minute * 60) + SBtime.second
-        print("SBTimeSeconds : ", SBTimeSeconds)
+        # print("SBTimeSeconds : ", SBTimeSeconds)
 
         #timeDiff = SBtime - includes.LastMinSkipTime
         #print(timeDiff)
