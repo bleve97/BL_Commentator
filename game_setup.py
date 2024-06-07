@@ -220,6 +220,7 @@ class InitialSetup(wx.Frame):
         gameMenu = wx.Menu()
         gameChooserItem = gameMenu.Append(-1,"&Game", "Choose a game by xcite game ID")
         gameRefreshIntervalItem = gameMenu.Append(-1, "&Refresh Interval", "delay between polling the xCite API in seconds")
+        gameSBReadRestartItem = gameMenu.Append(-1, "Restart SB reading")
 
 
         helpMenu = wx.Menu()
@@ -237,10 +238,14 @@ class InitialSetup(wx.Frame):
 
         self.Bind(wx.EVT_MENU, self.OnGameChooser, gameChooserItem)
         self.Bind(wx.EVT_MENU, self.OnGameRefreshIntervalChooser, gameRefreshIntervalItem)
+        self.Bind(wx.EVT_MENU, self.OnGameSBReadRestartChooser, gameSBReadRestartItem)
 
 
     def OnExit(self, event):
         self.Close(True)
+
+    def OnGameSBReadRestartChooser(self, event):
+        includes.OkToReadSBFile = True
 
     def OnGameChooser(self, event):
         print("choose a game")

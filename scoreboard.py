@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 import json
 import re
 
+#self.OkToReadFile = True
+
 class SBPenalty:
     def __init__(self, Number, timeLeft, crime, duration = 120):
         self.Number = Number
@@ -24,22 +26,25 @@ class ScoreBoard:
     def __init__(self):
         print("Opening ", includes.ScoreBoardFile)
         #root = etree.parse(includes.ScoreBoardFile)
+
         self.load(includes.ScoreBoardFile)
         print("opened")
+        #self.OkToReadFile = True
 
 
     def load(self, SBSourceFile):
         # all the shit is in here, hard coded XML parsing tags. Yuk. Yuk. Yuk.
-        #with open(SBSourceFile) as SB_file:
-        #    rawSBdata = SB_file.read()
-        #    SB_file.close()
-        #try:    # XML or JSON?
-
         try:
-            with open(SBSourceFile) as SB_File:
-                mytree = ET.parse(SB_File)
-                SB_File.close()
-            dict_data = mytree.getroot()
+            if includes.OkToReadSBFile == True:
+                with open(SBSourceFile) as SB_File:
+                    mytree = ET.parse(SB_File)
+                    includes.LastMyTree = mytree
+                    SB_File.close()
+            else:
+                mytree = includes.LastMyTree
+                print("iceHQ network bug workaround active, skipping file read")
+
+            dict_data = mytree.getroot()    # this could fail if the prog starts without being able to read the file
 
             self.SBVersion = dict_data[1].text
             self.SBName = dict_data[0].text
@@ -102,8 +107,9 @@ class ScoreBoard:
             self.HomeTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team1Penalties'))
             self.AwayTeamPenalties = self.parseXMLPenalties(dict_data[2].findall('Team2Penalties'))
 
-        except: # JSON?
-            print("JSON?")
+        except Exception as error: # JSON?
+            print(error)
+            #print("JSON?")
             exit()
             #print("it's JSON not XML! w00t!")
             SBdata = json.loads(rawSBdata)
@@ -196,6 +202,21 @@ class ScoreBoard:
                 secs = int(m2.group(1))
                 msec = int(m2.group(2)) * 100000
         SBtime = datetime.time(minute=mins, second=secs, microsecond=msec)
+        # iceHQ file access hack, urk ...
+        #print(SBtime, includes.LastMinSkipTime)
+        #print(SBtime.minute, SBtime.second)
+        #print(includes.LastMinSkipTime.minute, includes.LastMinSkipTime.second)
+        SBTimeSeconds = (SBtime.minute * 60) + SBtime.second
+        print("SBTimeSeconds : ", SBTimeSeconds)
+
+        #timeDiff = SBtime - includes.LastMinSkipTime
+        #print(timeDiff)
+        if (SBTimeSeconds <= includes.LastMinSkipTimeSeconds): #  and (includes.LastMinSkip):
+            includes.OkToReadSBFile = False
+        else:
+            includes.OkToReadSBFile = True
+        # hack to check logic
+        #includes.OkToReadSBFile = False
         #print(SBtime)
         return(SBtime)
 

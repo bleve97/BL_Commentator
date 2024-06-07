@@ -4,6 +4,12 @@ import time, datetime
 AppName = "BL Commentator"
 Version = "0.1a1"
 
+# LastMinSkip = False     # there's an issue at iceHQ with network access to the scoreboard
+# if this is set to True, the scoreboard refresh routine will skip polling the file at 61s to go.
+LastMinSkip = True
+LastMinSkipTimeSeconds= 61
+OkToReadSBFile = True
+
 API_URL_Base = "https://icehq.hockeysyte.com/api/"
 xsyte_id = 347
 
@@ -28,7 +34,11 @@ gameID = defaultGameID
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
 # ScoreBoardFile = "JSON samples/Livefeed"
-# ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
-ScoreBoardFile = 'i:/Livefeedv2'
+ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
+# ScoreBoardFile = 'i:/Livefeedv2'
 
 zerotime = datetime.time(minute=0, second=0, microsecond=0)
+
+
+# don't touch ...
+LastMyTree = {}
