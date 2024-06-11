@@ -3,8 +3,8 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">2.7</CurrentTime>
-			<Running Type="String">True</Running>
+			<CurrentTime Type="String">0.0</CurrentTime>
+			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
 		<TimeoutTime Type="Object">
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">3:07</Value>
+			<Value Type="String">3:46</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -42,18 +42,7 @@
 			<Value Type="String">0</Value>
 		</Team1Fouls>
 		<Team1Penalties Type="Object">
-			<Penalties Type="Array">
-				<Item Type="Object">
-					<PlayerNumber Type="Object">
-						<Value Type="String">18</Value>
-					</PlayerNumber>
-					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">0:53</CurrentTime>
-						<Running Type="String">True</Running>
-						<Direction Type="String">Down</Direction>
-					</PenaltyTime>
-				</Item>
-			</Penalties>
+			<Penalties Type="Array" />
 		</Team1Penalties>
 		<Team2Score Type="Object">
 			<Value Type="String">1</Value>
@@ -68,7 +57,7 @@
 			<Penalties Type="Array" />
 		</Team2Penalties>
 		<Period Type="Object">
-			<Value Type="String">2</Value>
+			<Value Type="String">1</Value>
 		</Period>
 		<Goal Type="Object">
 			<Value Type="String">None</Value>

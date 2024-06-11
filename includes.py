@@ -34,8 +34,11 @@ gameID = defaultGameID
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
 # ScoreBoardFile = "JSON samples/Livefeed"
-ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
+# ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
 # ScoreBoardFile = 'i:/Livefeedv2'
+
+# Phill's copy file, hopefully enough to protect the main system for windows/network file locks and subsequent fuckage.
+ScoreBoardFile = 'i:/Livefeed_copy'
 
 zerotime = datetime.time(minute=0, second=0, microsecond=0)
 
