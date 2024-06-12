@@ -120,7 +120,7 @@ class InitialSetup(wx.Frame):
         # the event loop that fetches scoreboard and xcite data
         self.SBTimer = wx.Timer(self, 1)
         self.XCITETimer = wx.Timer(self, 2)
-        self.SBTimer.Start(includes.ScoreBoardPollIntervalSeconds)
+        self.SBTimer.Start(includes.ScoreBoardPollIntervalMicroSeconds)
         self.XCITETimer.Start(includes.JSONRefreshInterval)
         self.Bind(wx.EVT_TIMER, self.SBUpdate, id=1)
         self.Bind(wx.EVT_TIMER, self.XCiteUpdate, id=2)
@@ -155,8 +155,8 @@ class InitialSetup(wx.Frame):
             FullClockString = "%02d.%d" % (SBD.PeriodTimeLeft.second, (SBD.PeriodTimeLeft.microsecond / 100000))
         else:
             # put the clock back to slower samples
-            if self.SBTimer.Interval == includes.HiResScoreBoardPollIntervalSeconds:
-                self.SBTimer.Start(includes.ScoreBoardPollIntervalSeconds)
+            if self.SBTimer.Interval == includes.HiResScoreBoardPollIntervalMicroSeconds:
+                self.SBTimer.Start(includes.ScoreBoardPollIntervalMicroSeconds)
             FullClockString = ClockString
         self.PClock.SetLabel(FullClockString)
         print(FullClockString)
