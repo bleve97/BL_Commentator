@@ -145,12 +145,12 @@ class InitialSetup(wx.Frame):
         self.homeTag.Label = SBD.HomeTeamName
         self.awayTag.Label = SBD.AwayTeamName
         self.WhatPeriodBox.SetLabel(PeriodString)
-        ClockString = "%02d:%02d" % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
+        ClockString = "  %02d:%02d  " % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
         print(ClockString, end= " ")
         if ((SBD.PeriodTimeLeft.minute == 0) and (SBD.PeriodTimeLeft > includes.zerotime)):
             # switch to high res with under a minute to go
-            if self.SBTimer.Interval == includes.ScoreBoardPollIntervalSeconds:
-                self.SBTimer.Start(includes.HiResScoreBoardPollIntervalSeconds)
+            if self.SBTimer.Interval == includes.ScoreBoardPollIntervalMicroSeconds:
+                self.SBTimer.Start(includes.HiResScoreBoardPollIntervalMicroSeconds)
             print(SBD.PeriodTimeLeft.microsecond, end=' ; ')
             FullClockString = "%02d.%d" % (SBD.PeriodTimeLeft.second, (SBD.PeriodTimeLeft.microsecond / 100000))
         else:

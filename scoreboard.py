@@ -36,13 +36,19 @@ class ScoreBoard:
         # all the shit is in here, hard coded XML parsing tags. Yuk. Yuk. Yuk.
         try:
             if includes.OkToReadSBFile == True:
-                with open(SBSourceFile) as SB_File:
-                    mytree = ET.parse(SB_File)
-                    includes.LastMyTree = mytree
-                    SB_File.close()
+                try:
+                    with open(SBSourceFile) as SB_File:
+                        mytree = ET.parse(SB_File)
+                        includes.LastMyTree = mytree
+                        SB_File.close()
+                except Exception as error:
+                    print("read error", error)
+                    mytree = includes.LastMyTree
             else:
                 mytree = includes.LastMyTree
                 print("iceHQ network bug workaround active, skipping file read")
+                print("resetting OktoReadFile to True")
+                includes.OkToReadSBFile = True
 
             dict_data = mytree.getroot()    # this could fail if the prog starts without being able to read the file
 
@@ -211,7 +217,7 @@ class ScoreBoard:
 
         #timeDiff = SBtime - includes.LastMinSkipTime
         #print(timeDiff)
-        if (SBTimeSeconds <= includes.LastMinSkipTimeSeconds): #  and (includes.LastMinSkip):
+        if (SBTimeSeconds <= includes.LastMinSkipTimeSeconds) and (includes.LastMinSkip):
             includes.OkToReadSBFile = False
         else:
             includes.OkToReadSBFile = True

@@ -6,7 +6,7 @@ Version = "0.1a1"
 
 # LastMinSkip = False     # there's an issue at iceHQ with network access to the scoreboard
 # if this is set to True, the scoreboard refresh routine will skip polling the file at 61s to go.
-LastMinSkip = True
+LastMinSkip = False
 LastMinSkipTimeSeconds= 61
 OkToReadSBFile = True
 
@@ -19,8 +19,10 @@ JSONRefreshInterval = DefaultJSONRefreshInterval
 
 DefaultScoreBoardPollIntervalMicroSeconds = int(0.5 * 1000) # seconds
 ScoreBoardPollIntervalMicroSeconds = DefaultScoreBoardPollIntervalMicroSeconds
-# HiResScoreBoardPollIntervalSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
-HiResScoreBoardPollIntervalMicroSeconds = int(0.5 * 1000) # 0.1 breaks at iceHQ?
+
+HiResScoreBoardPollIntervalMicroSeconds = int(0.1 * 1000) # seconds - we'll poll every 10th when we want hi res
+# HiResScoreBoardPollIntervalMicroSeconds = int(0.5 * 1000) # 0.1 breaks at iceHQ?
+
 SBClockLagMicroSeconds = int(0.1 * 1000)
 
 PenDefaultPlayerName = "Marty McSorley"
@@ -35,11 +37,11 @@ gameID = defaultGameID
 QueryURL = API_URL_Base + "games/game?game_id=" + str(gameID) + "&xsyte_id=" + str(xsyte_id) + "&format=json"
 
 # ScoreBoardFile = "JSON samples/Livefeed"
-ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
+# ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
 # ScoreBoardFile = 'i:/Livefeedv2'
 
 # Phill's copy file, hopefully enough to protect the main system for windows/network file locks and subsequent fuckage.
-# ScoreBoardFile = 'i:/Livefeed_copy'
+ScoreBoardFile = 'i:/Livefeed_copy'
 
 zerotime = datetime.time(minute=0, second=0, microsecond=0)
 
