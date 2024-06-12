@@ -28,5 +28,6 @@ if __name__ == '__main__':
     #print(thisGame)
     #print(DD.dummyHome.Name, DD.dummyHome.TeamID)
     frm.Show()
+    frm.Size = (800,500)
     app.MainLoop()
 
