@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">5:03</Value>
+			<Value Type="String">5:05</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>

@@ -197,7 +197,7 @@ class InitialSetup(wx.Frame):
             for penalty in SBD.AwayTeamPenalties:
                 criminal = ""
                 if penalty.Number in AwayPlayersByNum:
-                    criminal = " " + HomePlayersByNum[penalty.Number].SirName
+                    criminal = " " + AwayPlayersByNum[penalty.Number].SirName
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
                 awayPenString += str(penalty.Number) + criminal + " : " + penalty.timeLeft + "\n"
             self.awayPenTag.Label = awayPenString
