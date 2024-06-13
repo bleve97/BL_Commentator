@@ -8,13 +8,16 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship, Session
+from sqlalchemy import select
 import enum
 
 BL_CommClassesVersion = 0.1
 
 print("SQLAlchemy v", sqlalchemy.__version__, "BL_CommClassesVersion :", BL_CommClassesVersion)
 #engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
-engine = create_engine("sqlite+pysqlite:///database/commentator.db", echo=True)
+engine = create_engine("sqlite+pysqlite:///database/commentator.db", echo=False)
+
+# engine = create_engine("sqlite+pysqlite:///database/commentator.db", echo=True)
 
 session = Session(engine)
 # print(session)
@@ -99,22 +102,33 @@ class Player(Base):
     FirstName: Mapped[str] = mapped_column(String(30))
     SirName: Mapped[str] = mapped_column(String(30))
     PronunciationGuide: Mapped[Optional[str]] = mapped_column(String(50))
-    Number: Mapped[int]
+    Number: Mapped[Optional[int]]
     GameNumber : Mapped[int] # not always the same as their normal number, can be changed etc
-    GamePIM: Mapped[int]
-    GameGoals: Mapped[int]
-    GameAssists: Mapped[int]
-    StartingPosition: Mapped[Position]
-    CurrentPosition: Mapped[Position]
-    PositionSide: Mapped[PositionSide]
-    ForwardType: Mapped[ForwardType]
+    GamePIM: Mapped[int] = 0
+    GameGoals: Mapped[int] = 0
+    GameAssists: Mapped[int] = 0
+    StartingPosition: Mapped[Optional[Position]]
+    CurrentPosition: Mapped[Optional[Position]]
+    PositionSide: Mapped[Optional[PositionSide]]
+    ForwardType: Mapped[Optional[ForwardType]]
 
     xcitePlayerID: Mapped[int]
     #Team: Mapped["Team"] = relationship(back_populates="players")
 
-    def GetPlayerByNumber(self, number):
-        print("looking for Player No. ", number)
-        return False    # if no match
+def GetPlayerByNumber(self, number):
+    print("looking for Player No. ", number)
+    for player in session.query(Player).all():
+        if player.GameNumber == number:
+            return player
+    return False    # if no match
+
+def GetPlayerByXciteID(number):
+    stmt = select(Player).where(Player.xcitePlayerID == number)
+    foo = session.execute(stmt).first()
+    # for player in session.query(Player).all()
+    #print(foo[0].FirstName)
+    #exit()
+    return foo[0]
 
 
 

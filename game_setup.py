@@ -185,6 +185,7 @@ class InitialSetup(wx.Frame):
             for penalty in SBD.HomeTeamPenalties:
                 criminal = ""
                 if penalty.Number in HomePlayersByNum:
+                    # DBCrim = CC.GetPlayerByNumber(penalty.Number)
                     criminal = " " + HomePlayersByNum[penalty.Number].SirName
                 print(penalty.Number, penalty.timeLeft, ' ', end='')
                 homePenString += str(penalty.Number) + criminal + " : " + penalty.timeLeft + "\n"
@@ -269,20 +270,35 @@ class InitialSetup(wx.Frame):
         AwayPlayersFromHS = gameDataSnapshot['teams'][1]['roster']
         for HomePlayerFromHS in HomePlayersFromHS:
             # print(HomePlayerFromHS)
-            player = CC.Player(FirstName=HomePlayerFromHS['firstname'], SirName=HomePlayerFromHS['lastname'],
-                               xcitePlayerID=int(HomePlayerFromHS['player_id']),
+            xciteID = int(HomePlayerFromHS['player_id'])
+            FirstName = HomePlayerFromHS['firstname']
+            player = CC.Player(FirstName=FirstName, SirName=HomePlayerFromHS['lastname'],
+                               xcitePlayerID=xciteID,
                                GameNumber=self.fixPlayerNumber(HomePlayerFromHS['jersey_number']))
 
             # print('injecting : ", player.FirstName, player.)
             HomePlayersByNum[player.GameNumber] = player
-            #exit()
+            DBPlayer = CC.GetPlayerByXciteID(xciteID)
+            if not DBPlayer:
+                CC.session.add(player)
+                CC.session.commit()
+                # already exists in xcite, do nothing
+                # print("already exists")
+            else:
+                print(FirstName, "already exists, fetching from DB")
+                player = DBPlayer
+
         for playerNum in HomePlayersByNum:
-            print(HomePlayersByNum[playerNum].FirstName, HomePlayersByNum[playerNum].SirName, HomePlayersByNum[playerNum].GameNumber)
+            print(HomePlayersByNum[playerNum].FirstName, HomePlayersByNum[playerNum].SirName, HomePlayersByNum[playerNum].GameNumber, HomePlayersByNum[playerNum].PronunciationGuide)
         for AwayPlayerFromHS in AwayPlayersFromHS:
+            xciteID = int(AwayPlayerFromHS['player_id'])
             player = CC.Player(FirstName=AwayPlayerFromHS['firstname'], SirName=AwayPlayerFromHS['lastname'],
-                               xcitePlayerID=int(AwayPlayerFromHS['player_id']),
+                               xcitePlayerID=xciteID,
                                GameNumber=self.fixPlayerNumber(AwayPlayerFromHS['jersey_number']))
             AwayPlayersByNum[player.GameNumber] = player
+            if not CC.GetPlayerByXciteID(xciteID):
+                CC.session.add(player)
+                CC.session.commit()
         for playerNum in AwayPlayersByNum:
             print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber)
         # print(HomePlayersByNum)
