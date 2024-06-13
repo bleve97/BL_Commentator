@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">38.6</CurrentTime>
+			<CurrentTime Type="String">5:37</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">1:17</Value>
+			<Value Type="String">5:03</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -48,6 +48,26 @@
 						<Value Type="String">5</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">1:58</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">8</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">5:00</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">33</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
 						<CurrentTime Type="String">2:00</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
@@ -65,7 +85,18 @@
 			<Value Type="String">0</Value>
 		</Team2Fouls>
 		<Team2Penalties Type="Object">
-			<Penalties Type="Array" />
+			<Penalties Type="Array">
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">33</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">10:00</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+			</Penalties>
 		</Team2Penalties>
 		<Period Type="Object">
 			<Value Type="String">1</Value>

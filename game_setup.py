@@ -1,5 +1,6 @@
 import wx
 import wx.gizmos as gizmos
+import re
 
 import includes
 import main
@@ -270,7 +271,7 @@ class InitialSetup(wx.Frame):
             # print(HomePlayerFromHS)
             player = CC.Player(FirstName=HomePlayerFromHS['firstname'], SirName=HomePlayerFromHS['lastname'],
                                xcitePlayerID=int(HomePlayerFromHS['player_id']),
-                               GameNumber=int(HomePlayerFromHS['jersey_number']))
+                               GameNumber=self.fixPlayerNumber(HomePlayerFromHS['jersey_number']))
 
             # print('injecting : ", player.FirstName, player.)
             HomePlayersByNum[player.GameNumber] = player
@@ -280,7 +281,7 @@ class InitialSetup(wx.Frame):
         for AwayPlayerFromHS in AwayPlayersFromHS:
             player = CC.Player(FirstName=AwayPlayerFromHS['firstname'], SirName=AwayPlayerFromHS['lastname'],
                                xcitePlayerID=int(AwayPlayerFromHS['player_id']),
-                               GameNumber=int(AwayPlayerFromHS['jersey_number']))
+                               GameNumber=self.fixPlayerNumber(AwayPlayerFromHS['jersey_number']))
             AwayPlayersByNum[player.GameNumber] = player
         for playerNum in AwayPlayersByNum:
             print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber)
@@ -304,3 +305,18 @@ class InitialSetup(wx.Frame):
             print("new interval : ", newVal.GetValue())
         includes.JSONRefreshInterval = newVal.GetValue()
         newVal.Destroy()
+
+    def fixPlayerNumber(self, suppliedNumber):
+        # player number *should* be an integer. Sometimes it's G33 (goalie, fsck() knows why ....
+        # print("checking : ", suppliedNumber)
+        try:
+            num = int(suppliedNumber)
+        except:
+            # it's something funky ... probably G33 or something - if it's a "G" it's a goalie at iceHQ so we'll just strip the G
+            #print("player number from hockeysyte is NAN!", suppliedNumber)
+            res = [re.findall(r'(\d+)', suppliedNumber)[0] ]
+            #print(res)
+            num = int(res[0])
+            #print("returning ", num)
+
+        return num

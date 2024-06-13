@@ -13,7 +13,9 @@ import enum
 BL_CommClassesVersion = 0.1
 
 print("SQLAlchemy v", sqlalchemy.__version__, "BL_CommClassesVersion :", BL_CommClassesVersion)
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
+#engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
+engine = create_engine("sqlite+pysqlite:///database/commentator.db", echo=True)
+
 session = Session(engine)
 # print(session)
 class Base(DeclarativeBase):
@@ -148,6 +150,7 @@ class Period(Base):
 
 
 ## initialise all the stuff we need. These will basically be globals
+Base.metadata.create_all(engine)
 ThisGame = Game()
 HomeTeam = Team(Name="homers")
 AwayTeam = Team(Name="awayers")
