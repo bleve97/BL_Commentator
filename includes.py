@@ -46,5 +46,7 @@ ScoreBoardFile = 'JSON samples/sample_sbv3/Livefeed'
 zerotime = datetime.time(minute=0, second=0, microsecond=0)
 
 
+InitialFrameSize = (640,480)
+InitialTeamFrameSize = (720,960)
 # don't touch ...
 LastMyTree = {}

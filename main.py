@@ -10,6 +10,7 @@ import fetcher
 #import urllib.request, json
 import wx
 import game_setup
+import teampanel as TP
 #import commclasses as CC
 import dummydata as DD
 #import scoreboard as SB
@@ -28,6 +29,11 @@ if __name__ == '__main__':
     #print(thisGame)
     #print(DD.dummyHome.Name, DD.dummyHome.TeamID)
     frm.Show()
-    frm.Size = (800,500)
+    frm.Size = includes.InitialFrameSize
+
+    HTF = TP.TeamFrame(title="Home Team")
+    HTF.Size = includes.InitialTeamFrameSize
+    AWF = TP.TeamFrame(title="Away Team")
+    AWF.Size = includes.InitialTeamFrameSize
     app.MainLoop()
 

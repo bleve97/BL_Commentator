@@ -8,6 +8,7 @@ import commclasses as CC
 import game_setup
 import dummydata as DD
 import scoreboard as SB
+import teampanel as TP
 
 # global to this module, urk...
 SBD = SB.ScoreBoard()
