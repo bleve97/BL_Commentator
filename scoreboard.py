@@ -116,26 +116,26 @@ class ScoreBoard:
         except Exception as error: # JSON?
             print(error)
             #print("JSON?")
-            exit()
+            #exit()
             #print("it's JSON not XML! w00t!")
-            SBdata = json.loads(rawSBdata)
+            # SBdata = json.loads(rawSBdata)
             #print(SBdata)
-            self.SBVersion = SBdata['Version']
-            self.SBName = SBdata['Scoreboard']
-            self.PeriodStatus = SBdata['ScoreboardFields']['PeriodTime']['Running']
-            self.Period = int(SBdata['ScoreboardFields']['Period']['Value'])
-            self.PeriodTimeLeft = self.timeFromScoreBoard(SBdata['ScoreboardFields']['PeriodTime']['CurrentTime'])
-            self.HomeTeamName = SBdata['ScoreboardFields']['Team1Name']['Value']
-            self.HomeTeamScore = int(SBdata['ScoreboardFields']['Team1Score']['Value'])
-            self.HomeTeamShots = int(SBdata['ScoreboardFields']['Team1ShotsOnGoal']['Value'])
-            self.AwayTeamName = SBdata['ScoreboardFields']['Team2Name']['Value']
-            self.AwayTeamScore = int(SBdata['ScoreboardFields']['Team2Score']['Value'])
-            self.AwayTeamShots = int(SBdata['ScoreboardFields']['Team2ShotsOnGoal']['Value'])
+            #self.SBVersion = SBdata['Version']
+            #self.SBName = SBdata['Scoreboard']
+            #self.PeriodStatus = SBdata['ScoreboardFields']['PeriodTime']['Running']
+            #self.Period = int(SBdata['ScoreboardFields']['Period']['Value'])
+            #self.PeriodTimeLeft = self.timeFromScoreBoard(SBdata['ScoreboardFields']['PeriodTime']['CurrentTime'])
+            #self.HomeTeamName = SBdata['ScoreboardFields']['Team1Name']['Value']
+            #self.HomeTeamScore = int(SBdata['ScoreboardFields']['Team1Score']['Value'])
+            #self.HomeTeamShots = int(SBdata['ScoreboardFields']['Team1ShotsOnGoal']['Value'])
+            #self.AwayTeamName = SBdata['ScoreboardFields']['Team2Name']['Value']
+            #self.AwayTeamScore = int(SBdata['ScoreboardFields']['Team2Score']['Value'])
+            #self.AwayTeamShots = int(SBdata['ScoreboardFields']['Team2ShotsOnGoal']['Value'])
 
             # print(SBdata['ScoreboardFields']['Team2Penalties'])
 
-            self.HomeTeamPenalties = self.parseJSONPenalties(SBdata['ScoreboardFields']['Team1Penalties']['Penalties'])
-            self.AwayTeamPenalties = self.parseJSONPenalties(SBdata['ScoreboardFields']['Team2Penalties']['Penalties'])
+            #self.HomeTeamPenalties = self.parseJSONPenalties(SBdata['ScoreboardFields']['Team1Penalties']['Penalties'])
+            #self.AwayTeamPenalties = self.parseJSONPenalties(SBdata['ScoreboardFields']['Team2Penalties']['Penalties'])
 
 
 

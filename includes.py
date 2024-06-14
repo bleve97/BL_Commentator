@@ -29,7 +29,7 @@ PenDefaultPlayerName = "Marty McSorley"
 PenDefaultCrime = "Gooning"
 
 # for testing!
-defaultGameID = 6548
+defaultGameID = 6551
 gameID = defaultGameID
 
 # games/game?game_id=6024&xsyte_id=347&format=json"

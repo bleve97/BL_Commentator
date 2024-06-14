@@ -272,7 +272,8 @@ class InitialSetup(wx.Frame):
             # print(HomePlayerFromHS)
             xciteID = int(HomePlayerFromHS['player_id'])
             FirstName = HomePlayerFromHS['firstname']
-            player = CC.Player(FirstName=FirstName, SirName=HomePlayerFromHS['lastname'],
+            SirName = HomePlayerFromHS['lastname']
+            player = CC.Player(FirstName=FirstName, SirName=SirName,
                                xcitePlayerID=xciteID,
                                GameNumber=self.fixPlayerNumber(HomePlayerFromHS['jersey_number']))
 
@@ -296,7 +297,8 @@ class InitialSetup(wx.Frame):
         for AwayPlayerFromHS in AwayPlayersFromHS:
             xciteID = int(AwayPlayerFromHS['player_id'])
             FirstName = AwayPlayerFromHS['firstname']
-            player = CC.Player(FirstName=FirstName, SirName=AwayPlayerFromHS['lastname'],
+            SirName = AwayPlayerFromHS['lastname']
+            player = CC.Player(FirstName=FirstName, SirName=SirName,
                                xcitePlayerID=xciteID,
                                GameNumber=self.fixPlayerNumber(AwayPlayerFromHS['jersey_number']))
             # AwayPlayersByNum[player.GameNumber] = player
@@ -335,18 +337,17 @@ class InitialSetup(wx.Frame):
     def fixPlayerNumber(self, suppliedNumber):
         # player number *should* be an integer. Sometimes it's G33 (goalie, fsck() knows why ....
         # print("checking : ", suppliedNumber)
+        num = False
+
         try:
-            num = int(suppliedNumber)
+            print("checking num : ", suppliedNumber)
+            res = [re.findall(r'(\d+)', suppliedNumber)]
+            print(" - ", res[0])
+            num = int(res[0])
         except:
             # it's something funky ... probably G33 or something - if it's a "G" it's a goalie at iceHQ so we'll just strip the G
             #print("player number from hockeysyte is NAN!", suppliedNumber)
-            res = [re.findall(r'(\d+)', suppliedNumber)[0] ]
-            #print(res)
-            # this bit needs to be more robust
-            try:
-                num = int(res[0])
-            except:
-                num = 0
+            num = False
             print("returning ", num)
 
         return num
