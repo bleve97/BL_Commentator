@@ -116,6 +116,7 @@ class Player(Base):
     #Team: Mapped["Team"] = relationship(back_populates="players")
 
 def GetPlayerByNumber(self, number):
+    # GameNumber isn't unique, this may have unexpected results.
     print("looking for Player No. ", number)
     for player in session.query(Player).all():
         if player.GameNumber == number:
@@ -123,6 +124,7 @@ def GetPlayerByNumber(self, number):
     return False    # if no match
 
 def GetPlayerByXciteID(number):
+    # xcite ID *should* be unique. *should*
     stmt = select(Player).where(Player.xcitePlayerID == number)
     foo = session.execute(stmt).first()
     # for player in session.query(Player).all()
