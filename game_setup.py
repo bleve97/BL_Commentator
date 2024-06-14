@@ -342,7 +342,11 @@ class InitialSetup(wx.Frame):
             #print("player number from hockeysyte is NAN!", suppliedNumber)
             res = [re.findall(r'(\d+)', suppliedNumber)[0] ]
             #print(res)
-            num = int(res[0])
-            #print("returning ", num)
+            # this bit needs to be more robust
+            try:
+                num = int(res[0])
+            except:
+                num = 0
+            print("returning ", num)
 
         return num
