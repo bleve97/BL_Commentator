@@ -103,7 +103,7 @@ class Player(Base):
     SirName: Mapped[str] = mapped_column(String(30))
     PronunciationGuide: Mapped[Optional[str]] = mapped_column(String(50))
     Number: Mapped[Optional[int]]
-    GameNumber : Mapped[int] # not always the same as their normal number, can be changed etc
+    GameNumber : Mapped[Optional[int]] # not always the same as their normal number, can be changed etc
     GamePIM: Mapped[int] = 0
     GameGoals: Mapped[int] = 0
     GameAssists: Mapped[int] = 0

@@ -337,17 +337,17 @@ class InitialSetup(wx.Frame):
     def fixPlayerNumber(self, suppliedNumber):
         # player number *should* be an integer. Sometimes it's G33 (goalie, fsck() knows why ....
         # print("checking : ", suppliedNumber)
-        num = False
 
         try:
             print("checking num : ", suppliedNumber)
-            res = [re.findall(r'(\d+)', suppliedNumber)]
-            print(" - ", res[0])
-            num = int(res[0])
+            regexTest = re.compile('(\d+)')
+            statement = regexTest.match(suppliedNumber)
+            print(" - ", statement[0])
+            num = int(statement[0])
         except:
             # it's something funky ... probably G33 or something - if it's a "G" it's a goalie at iceHQ so we'll just strip the G
-            #print("player number from hockeysyte is NAN!", suppliedNumber)
+            print("player number from hockeysyte is NAN!", suppliedNumber)
             num = False
-            print("returning ", num)
+            print("returning False  :( ", num)
 
         return num

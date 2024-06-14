@@ -144,26 +144,6 @@ class ScoreBoard:
         #print("reloading from XML")
         self.load(includes.ScoreBoardFile)
 
-    def parseJSONPenalties(self, chunk):
-        #print("parsing :", chunk)
-        Penalties = []
-        penaltyCounter = len(chunk)
-        #print("penalty Counter :", penaltyCounter)
-        if len(chunk) > 0:  # if there's any penalties in the XML
-            #print(chunk)
-            #loop over penalties and create SBPenalty objects
-            for penalty in chunk:
-                #print(penalty)
-                number = penalty['PlayerNumber']['Value']
-                timeLeft = penalty['PenaltyTime']['CurrentTime']  # ['PenaltyTime']['Value']['#text']
-                # print("penalty to ", number, timeLeft)
-
-                crime = False
-                thisPen = SBPenalty(Number = int(number), timeLeft = timeLeft, crime = crime)
-                Penalties.append(thisPen)
-        else:
-            Penalties = False
-        return Penalties
 
     def parseXMLPenalties(self, chunk):
         # print("parsing XML chunk:", chunk)
