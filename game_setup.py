@@ -277,7 +277,7 @@ class InitialSetup(wx.Frame):
                                GameNumber=self.fixPlayerNumber(HomePlayerFromHS['jersey_number']))
 
             # print('injecting : ", player.FirstName, player.)
-            HomePlayersByNum[player.GameNumber] = player
+            # HomePlayersByNum[player.GameNumber] = player
             DBPlayer = CC.GetPlayerByXciteID(xciteID)
             if not DBPlayer:
                 CC.session.add(player)
@@ -287,18 +287,25 @@ class InitialSetup(wx.Frame):
             else:
                 print(FirstName, "already exists, fetching from DB")
                 player = DBPlayer
-
+                # print(player.FirstName, player.PronunciationGuide)
+                # exit()
+            HomePlayersByNum[player.GameNumber] = player
         for playerNum in HomePlayersByNum:
             print(HomePlayersByNum[playerNum].FirstName, HomePlayersByNum[playerNum].SirName, HomePlayersByNum[playerNum].GameNumber, HomePlayersByNum[playerNum].PronunciationGuide)
         for AwayPlayerFromHS in AwayPlayersFromHS:
             xciteID = int(AwayPlayerFromHS['player_id'])
-            player = CC.Player(FirstName=AwayPlayerFromHS['firstname'], SirName=AwayPlayerFromHS['lastname'],
+            FirstName = AwayPlayerFromHS['firstname']
+            player = CC.Player(FirstName=FirstName, SirName=AwayPlayerFromHS['lastname'],
                                xcitePlayerID=xciteID,
                                GameNumber=self.fixPlayerNumber(AwayPlayerFromHS['jersey_number']))
-            AwayPlayersByNum[player.GameNumber] = player
-            if not CC.GetPlayerByXciteID(xciteID):
+            # AwayPlayersByNum[player.GameNumber] = player
+            DBPlayer = CC.GetPlayerByXciteID(xciteID)
+            if not DBPlayer:
                 CC.session.add(player)
                 CC.session.commit()
+            else:
+                player = DBPlayer
+            AwayPlayersByNum[player.GameNumber] = player
         for playerNum in AwayPlayersByNum:
             print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber)
         # print(HomePlayersByNum)
