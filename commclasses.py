@@ -79,12 +79,12 @@ class Game(Base):
 
     HomeTeamID: Mapped[int] = mapped_column(ForeignKey("teams.TeamID"))
     #AwayTeamID: Mapped[Team]
-    HomeScore: Mapped[int]
-    AwayScore: Mapped[int]
-    HomeShots: Mapped[Optional[int]]
-    AwayShots: Mapped[Optional[int]]
-    HomePIM: Mapped[Optional[int]]
-    AwayPIM: Mapped[Optional[int]]
+    HomeScore: Mapped[int] = 0
+    AwayScore: Mapped[int] = 0
+    HomeShots: Mapped[Optional[int]] = 0
+    AwayShots: Mapped[Optional[int]] = 0
+    HomePIM: Mapped[Optional[int]] = 0
+    AwayPIM: Mapped[Optional[int]] = 0
 
     #def __repr__(self) -> str:
     #    return f"Game(id={self.GameID})"
@@ -128,7 +128,10 @@ def GetPlayerByXciteID(number):
     # for player in session.query(Player).all()
     #print(foo[0].FirstName)
     #exit()
-    return foo[0]
+    try:
+        return foo[0]
+    except:
+        return False
 
 
 

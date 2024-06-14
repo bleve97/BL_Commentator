@@ -280,6 +280,7 @@ class InitialSetup(wx.Frame):
             # HomePlayersByNum[player.GameNumber] = player
             DBPlayer = CC.GetPlayerByXciteID(xciteID)
             if not DBPlayer:
+                print("new blood! creating ", FirstName)
                 CC.session.add(player)
                 CC.session.commit()
                 # already exists in xcite, do nothing
@@ -301,13 +302,15 @@ class InitialSetup(wx.Frame):
             # AwayPlayersByNum[player.GameNumber] = player
             DBPlayer = CC.GetPlayerByXciteID(xciteID)
             if not DBPlayer:
+                print("new blood! creating ", FirstName)
                 CC.session.add(player)
                 CC.session.commit()
             else:
+                print(FirstName, "already exists, fetching from DB")
                 player = DBPlayer
             AwayPlayersByNum[player.GameNumber] = player
         for playerNum in AwayPlayersByNum:
-            print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber)
+            print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber, AwayPlayersByNum[playerNum].PronunciationGuide)
         # print(HomePlayersByNum)
         # print(gameDataSnapshot["fetchedAt"])
         # print(str(teams))
