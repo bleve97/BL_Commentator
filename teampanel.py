@@ -12,7 +12,11 @@ class TeamFrame(wx.Frame):
         self.Show()
 
 
-class PlayerInfo():
+class TeamPanel(wx.Panel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        main_sizer = wx.BoxSizer(wx.VERTICAL)
+class PlayerInfoPanel():
     def __init__(self):
         print("hi")
     # hi
