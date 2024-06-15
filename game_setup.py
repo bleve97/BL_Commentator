@@ -273,9 +273,10 @@ class InitialSetup(wx.Frame):
             xciteID = int(HomePlayerFromHS['player_id'])
             FirstName = HomePlayerFromHS['firstname']
             SirName = HomePlayerFromHS['lastname']
+            GameNumber = self.fixPlayerNumber(HomePlayerFromHS['jersey_number'])
             player = CC.Player(FirstName=FirstName, SirName=SirName,
                                xcitePlayerID=xciteID,
-                               GameNumber=self.fixPlayerNumber(HomePlayerFromHS['jersey_number']))
+                               GameNumber=GameNumber)
 
             # print('injecting : ", player.FirstName, player.)
             # HomePlayersByNum[player.GameNumber] = player
@@ -298,9 +299,11 @@ class InitialSetup(wx.Frame):
             xciteID = int(AwayPlayerFromHS['player_id'])
             FirstName = AwayPlayerFromHS['firstname']
             SirName = AwayPlayerFromHS['lastname']
+            GameNumber = self.fixPlayerNumber(AwayPlayerFromHS['jersey_number'])
+
             player = CC.Player(FirstName=FirstName, SirName=SirName,
                                xcitePlayerID=xciteID,
-                               GameNumber=self.fixPlayerNumber(AwayPlayerFromHS['jersey_number']))
+                               GameNumber=GameNumber)
             # AwayPlayersByNum[player.GameNumber] = player
             DBPlayer = CC.GetPlayerByXciteID(xciteID)
             if not DBPlayer:
@@ -339,15 +342,14 @@ class InitialSetup(wx.Frame):
         # print("checking : ", suppliedNumber)
 
         try:
-            print("checking num : ", suppliedNumber)
-            regexTest = re.compile('(\d+)')
-            statement = regexTest.match(suppliedNumber)
-            print(" - ", statement[0])
+            # print("checking num : ", suppliedNumber)
+            regexTest = re.compile(r'(\d+)')
+            statement = regexTest.search(suppliedNumber)
+            # print(" - ", statement[0])
             num = int(statement[0])
         except:
             # it's something funky ... probably G33 or something - if it's a "G" it's a goalie at iceHQ so we'll just strip the G
             print("player number from hockeysyte is NAN!", suppliedNumber)
             num = False
             print("returning False  :( ", num)
-
-        return num
+        return int(num)

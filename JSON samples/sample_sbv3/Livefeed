@@ -3,7 +3,7 @@
 	<Version Type="String">3.0.5.0</Version>
 	<ScoreboardFields Type="Object">
 		<PeriodTime Type="Object">
-			<CurrentTime Type="String">2:53</CurrentTime>
+			<CurrentTime Type="String">2:44</CurrentTime>
 			<Running Type="String">False</Running>
 			<Direction Type="String">Down</Direction>
 		</PeriodTime>
@@ -16,7 +16,7 @@
 			<Value Type="String">None</Value>
 		</TimeoutType>
 		<TimeOfDay Type="Object">
-			<Value Type="String">5:17</Value>
+			<Value Type="String">11:50</Value>
 		</TimeOfDay>
 		<MainClockSource Type="Object">
 			<Value Type="String">PeriodTime</Value>
@@ -48,7 +48,17 @@
 						<Value Type="String">8</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">2:17</CurrentTime>
+						<CurrentTime Type="String">2:08</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">5</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">1:52</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
@@ -71,7 +81,17 @@
 						<Value Type="String">33</Value>
 					</PlayerNumber>
 					<PenaltyTime Type="Object">
-						<CurrentTime Type="String">7:17</CurrentTime>
+						<CurrentTime Type="String">7:08</CurrentTime>
+						<Running Type="String">False</Running>
+						<Direction Type="String">Down</Direction>
+					</PenaltyTime>
+				</Item>
+				<Item Type="Object">
+					<PlayerNumber Type="Object">
+						<Value Type="String">5</Value>
+					</PlayerNumber>
+					<PenaltyTime Type="Object">
+						<CurrentTime Type="String">9:52</CurrentTime>
 						<Running Type="String">False</Running>
 						<Direction Type="String">Down</Direction>
 					</PenaltyTime>
