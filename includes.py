@@ -4,7 +4,7 @@ import time, datetime
 AppName = "BL Commentator"
 Version = "0.1a1"
 
-defaultGameID = 6550
+defaultGameID = 6228
 
 # LastMinSkip = False     # there's an issue at iceHQ with network access to the scoreboard
 # if this is set to True, the scoreboard refresh routine will skip polling the file at 61s to go.
