@@ -268,6 +268,14 @@ class InitialSetup(wx.Frame):
         CC.AwayTeam.Name = gameDataSnapshot["teams"][1]["team_full_name"]
         HomePlayersFromHS = gameDataSnapshot['teams'][0]['roster']
         AwayPlayersFromHS = gameDataSnapshot['teams'][1]['roster']
+
+        #HTF = TP.TeamPanel(teamName=CC.HomeTeam.Name, parent=self)
+        #HTF = TP.TeamFrame()
+        #HTF.Size = includes.InitialTeamFrameSize
+        #AWF = TP.TeamFrame(title="Away Team", parent=wx.GetTopLevelParent(frm))
+        #AWF.Size = includes.InitialTeamFrameSize
+
+
         for HomePlayerFromHS in HomePlayersFromHS:
             # print(HomePlayerFromHS)
             xciteID = int(HomePlayerFromHS['player_id'])
