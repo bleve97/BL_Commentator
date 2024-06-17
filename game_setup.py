@@ -10,6 +10,7 @@ import game_setup
 import dummydata as DD
 import scoreboard as SB
 import teampanel as TP
+import __main__     # so we can get at the frames for teams. There should be a better way to do this!
 
 # global to this module, urk...
 SBD = SB.ScoreBoard()
@@ -145,7 +146,9 @@ class InitialSetup(wx.Frame):
         #print(ClockString)
         FullClockString = ""
         self.homeTag.Label = SBD.HomeTeamName
+        __main__.HTF.SetTitle(SBD.HomeTeamName)
         self.awayTag.Label = SBD.AwayTeamName
+        __main__.ATF.SetTitle(SBD.AwayTeamName)
         self.WhatPeriodBox.SetLabel(PeriodString)
         ClockString = "  %02d:%02d  " % (SBD.PeriodTimeLeft.minute, SBD.PeriodTimeLeft.second)
         print(ClockString, end= " ")

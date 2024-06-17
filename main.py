@@ -31,9 +31,10 @@ if __name__ == '__main__':
     frm.Show()
     frm.Size = includes.InitialFrameSize
 
-    #HTF = TP.TeamFrame(title="Home Team", parent=wx.GetTopLevelParent(frm))
-    #HTF.Size = includes.InitialTeamFrameSize
-    #AWF = TP.TeamFrame(title="Away Team", parent=wx.GetTopLevelParent(frm))
-    #AWF.Size = includes.InitialTeamFrameSize
+    # global HTF
+    HTF = TP.TeamFrame(title="Home Team", parent=wx.GetTopLevelParent(frm))
+    HTF.Size = includes.InitialTeamFrameSize
+    ATF = TP.TeamFrame(title="Away Team", parent=wx.GetTopLevelParent(frm))
+    ATF.Size = includes.InitialTeamFrameSize
     app.MainLoop()
 
