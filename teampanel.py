@@ -11,50 +11,61 @@ class PlayerInfoPanel(wx.Panel):
 
     def __init__(self, parent, title, player):
         super().__init__(parent)
+
+        PlayerSizer = wx.FlexGridSizer(1,4,1,10)
+
+
         numFont = wx.Font(wx.FontInfo(40).Bold())
-        self.PNumber = wx.StaticText(self, -1,  str(player.GameNumber), size=(250,250))
-        self.PNumber.SetFont(numFont)
-        SNameFont = wx.Font(wx.FontInfo(30).Bold())
-        self.PSName = wx.StaticText(self, -1,player.SirName)
-        self.PSName.SetFont(SNameFont)
+        PNumber = wx.StaticText(self, wx.ID_ANY,  str(player.GameNumber), style=wx.ALIGN_CENTER_HORIZONTAL)
+        PNumber.SetBackgroundColour(wx.Colour(255, 255, 255))
+        PNumber.SetForegroundColour(wx.Colour(47, 47, 79))
+        PNumber.SetFont(numFont)
+        PlayerSizer.Add(PNumber, 4, wx.ALIGN_CENTER | wx.ALL | wx.FIXED_MINSIZE, 1)
 
-        FNameFont = wx.Font(wx.FontInfo(15).Bold())
-        self.PFName = wx.StaticText(self, -1, player.FirstName)
-        self.PFName.SetFont(FNameFont)
+        namesSizer = wx.FlexGridSizer(2, 1, 0, 0)
+        PlayerSizer.Add(namesSizer, 1, wx.EXPAND, 0)
 
-        if (player.PronunciationGuide):
-            self.Pronounce = wx.StaticText(self, -1, player.PronunciationGuide)
-            self.Pronounce.SetFont(FNameFont)
-        # PFNAME = wx.StaticText(self, -1, "Hezar")
-        # PPGuide = wx.StaticText(self, -1,"He's a wanker")
-        # PGameGoals = wx.StaticText(self, -1, str(0))
-        # PGameAssists = wx.StaticText(self, -1, str(0))
-        # PGamePIM = wx.StaticText(self, -1, str(4))
+        Sirname = wx.StaticText(self, wx.ID_ANY, player.SirName, style=wx.ALIGN_CENTER_HORIZONTAL)
+        Sirname.SetFont(wx.Font(20, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, 0, ""))
+        namesSizer.Add(Sirname, 1, wx.ALL, 4)
 
-        box = wx.StaticBox(self, -1, "Player staticbox")
-        bsizer = wx.StaticBoxSizer(box, wx.HORIZONTAL)
+        firstNamePronounceSizer = wx.GridBagSizer(0, 0)
+        namesSizer.Add(firstNamePronounceSizer, 1, wx.EXPAND, 0)
 
-        numBox = wx.StaticBox(self, -1, "Number")
-        numBoxSizer = wx.StaticBoxSizer(numBox)
-        numBoxSizer.Add(self.PNumber)
+        FirstName = wx.StaticText(self, wx.ID_ANY, player.FirstName, style=wx.ALIGN_LEFT)
+        FirstName.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Segoe UI"))
+        firstNamePronounceSizer.Add(FirstName, (0, 0), (1, 1), wx.ALIGN_CENTER | wx.ALL, 5)
 
-        nameBox = wx.StaticBox(self, -1, "Name")
-        nameBoxSizer = wx.StaticBoxSizer(nameBox, wx.VERTICAL)
-        nameBoxSizer.Add(self.PSName, 0, wx.TOP|wx.LEFT, 10)
-        nameBoxSizer.Add(self.PFName, 0, wx.BOTTOM, wx.LEFT, 10)
-        if (player.PronunciationGuide):
-            nameBoxSizer.Add(self.Pronounce, 0, wx.BOTTOM|wx.RIGHT, 0)
-        t = wx.StaticText(self, -1, title)
-        # bsizer.Add(self.PNumber, 1, wx.LEFT)
-        bsizer.Add(numBoxSizer, 0, wx.LEFT, 5)
-        bsizer.Add(nameBoxSizer, 0, wx.RIGHT, 5)
+        Pronounced = wx.StaticText(self, wx.ID_ANY, player.PronunciationGuide, style=wx.ALIGN_RIGHT)
+        Pronounced.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_SLANT, wx.FONTWEIGHT_BOLD, 0, ""))
+        firstNamePronounceSizer.Add(Pronounced, (0, 1), (1, 1), wx.ALIGN_CENTER | wx.ALL, 5)
 
-        #bsizer.Add(self.PSName,0,wx.TOP|wx.RIGHT, 10)
+        grid_sizer_1 = wx.FlexGridSizer(3, 1, 0, 2)
+        PlayerSizer.Add(grid_sizer_1, 1, wx.ALL | wx.EXPAND, 5)
+
+        Goals = wx.StaticText(self, wx.ID_ANY, str(player.GameGoals))
+        Goals.SetFont(wx.Font(20, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, 0, ""))
+        grid_sizer_1.Add(Goals, 0, 0, 0)
+
+        Assists = wx.StaticText(self, wx.ID_ANY, str(player.GameAssists))
+        Assists.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
+        grid_sizer_1.Add(Assists, 0, 0, 0)
+
+        PIM = wx.StaticText(self, wx.ID_ANY, str(player.GamePIM))
+        PIM.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_SLANT, wx.FONTWEIGHT_BOLD, 0, ""))
+        grid_sizer_1.Add(PIM, 0, 0, 0)
+
+        firstNamePronounceSizer.AddGrowableCol(0)
+        # firstNamePronounceSizer.AddGrowableCol(1)
+
+        namesSizer.AddGrowableRow(0)
+        namesSizer.AddGrowableCol(0)
+
+        self.SetSizer(PlayerSizer)
+
+        self.Layout()
 
 
-        border = wx.BoxSizer()
-        border.Add(bsizer, 1, wx.EXPAND|wx.ALL, 25)
-        self.SetSizer(border)
 
 
 
@@ -62,11 +73,14 @@ class PlayerInfoPanel(wx.Panel):
 
 class TeamPanel(wx.Panel):
 
-    def __init__(self, parent, teamName):
+    def __init__(self, parent, teamName, team):
         super().__init__(parent)
         main_sizer = wx.BoxSizer(wx.VERTICAL)
         title = wx.StaticBox(self, -1, teamName)
         main_sizer.Add(title, 0, wx.TOP|wx.LEFT, 10)
+        for player in team:
+            PPanel = PlayerInfoPanel(self, player=player, title="bloot")
+            main_sizer.Add(PPanel, 0)
 
         self.SetSizer(main_sizer)
 #class PlayerInfoPanel():
@@ -80,6 +94,8 @@ class TeamFrame(wx.Frame):
     def __init__(self, title, parent=None):
         wx.Frame.__init__(self,parent=parent, title=title)
         testPlayer = CC.Player(PlayerID = 1234, GameNumber = 69, FirstName = "Ernie", SirName = "Vanker", PronunciationGuide="WANKer")
-        panel=PlayerInfoPanel(self,player=testPlayer, title="bar")
+        testPlayer2 = CC.GetPlayerByXciteID(19113)
+        #panel=PlayerInfoPanel(self,player=testPlayer, title="bar")
+        panel2=PlayerInfoPanel(self,player=testPlayer2, title="bloot")
         #panel=TeamPanel(self, )
         self.Show()
