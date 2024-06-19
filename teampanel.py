@@ -12,11 +12,19 @@ class PlayerInfoPanel(wx.Panel):
     def __init__(self, parent, title, player):
         super().__init__(parent)
         numFont = wx.Font(wx.FontInfo(40).Bold())
-        self.PNumber = wx.StaticText(self, -1,  str(69), size=(250,250))
+        self.PNumber = wx.StaticText(self, -1,  str(player.GameNumber), size=(250,250))
         self.PNumber.SetFont(numFont)
         SNameFont = wx.Font(wx.FontInfo(30).Bold())
-        self.PSName = wx.StaticText(self, -1,"WANKER")
+        self.PSName = wx.StaticText(self, -1,player.SirName)
         self.PSName.SetFont(SNameFont)
+
+        FNameFont = wx.Font(wx.FontInfo(15).Bold())
+        self.PFName = wx.StaticText(self, -1, player.FirstName)
+        self.PFName.SetFont(FNameFont)
+
+        if (player.PronunciationGuide):
+            self.Pronounce = wx.StaticText(self, -1, player.PronunciationGuide)
+            self.Pronounce.SetFont(FNameFont)
         # PFNAME = wx.StaticText(self, -1, "Hezar")
         # PPGuide = wx.StaticText(self, -1,"He's a wanker")
         # PGameGoals = wx.StaticText(self, -1, str(0))
@@ -25,10 +33,23 @@ class PlayerInfoPanel(wx.Panel):
 
         box = wx.StaticBox(self, -1, "Player staticbox")
         bsizer = wx.StaticBoxSizer(box, wx.HORIZONTAL)
-        #player.GameNumber = 99
+
+        numBox = wx.StaticBox(self, -1, "Number")
+        numBoxSizer = wx.StaticBoxSizer(numBox)
+        numBoxSizer.Add(self.PNumber)
+
+        nameBox = wx.StaticBox(self, -1, "Name")
+        nameBoxSizer = wx.StaticBoxSizer(nameBox, wx.VERTICAL)
+        nameBoxSizer.Add(self.PSName, 0, wx.TOP|wx.LEFT, 10)
+        nameBoxSizer.Add(self.PFName, 0, wx.BOTTOM, wx.LEFT, 10)
+        if (player.PronunciationGuide):
+            nameBoxSizer.Add(self.Pronounce, 0, wx.BOTTOM|wx.RIGHT, 0)
         t = wx.StaticText(self, -1, title)
-        bsizer.Add(self.PNumber, 1, wx.LEFT)
-        bsizer.Add(self.PSName,0,wx.TOP|wx.RIGHT, 10)
+        # bsizer.Add(self.PNumber, 1, wx.LEFT)
+        bsizer.Add(numBoxSizer, 0, wx.LEFT, 5)
+        bsizer.Add(nameBoxSizer, 0, wx.RIGHT, 5)
+
+        #bsizer.Add(self.PSName,0,wx.TOP|wx.RIGHT, 10)
 
 
         border = wx.BoxSizer()
@@ -58,6 +79,7 @@ class TeamFrame(wx.Frame):
 
     def __init__(self, title, parent=None):
         wx.Frame.__init__(self,parent=parent, title=title)
-        panel=PlayerInfoPanel(self,player="foo", title="bar")
+        testPlayer = CC.Player(PlayerID = 1234, GameNumber = 69, FirstName = "Ernie", SirName = "Vanker", PronunciationGuide="WANKer")
+        panel=PlayerInfoPanel(self,player=testPlayer, title="bar")
         #panel=TeamPanel(self, )
         self.Show()
