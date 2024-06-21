@@ -1,6 +1,6 @@
 
 testing = True
-#testing = False
+testing = False
 
 import time, datetime
 AppName = "BL Commentator"
