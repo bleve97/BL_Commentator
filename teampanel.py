@@ -7,7 +7,8 @@ import scoreboard as SB
 
 
 
-class PlayerInfoPanel(wx.Panel):
+#class PlayerInfoPanel(wx.Panel):
+class PlayerWidget():
 
     def __init__(self, parent, title, player):
         super().__init__(parent)
@@ -79,8 +80,10 @@ class TeamPanel(wx.Panel):
         title = wx.StaticBox(self, -1, teamName)
         main_sizer.Add(title, 0, wx.TOP|wx.LEFT, 10)
         for player in team:
-            PPanel = PlayerInfoPanel(self, player=player, title="bloot")
-            main_sizer.Add(PPanel, 0)
+            #PPanel = PlayerInfoPanel(self, player=player, title="bloot")
+            PWidget = PlayerWidget(self, title=teamName, player=player)
+            #main_sizer.Add(PPanel, 0)
+            main_sizer.Add((PWidget, 0))
 
         self.SetSizer(main_sizer)
 #class PlayerInfoPanel():
@@ -96,6 +99,7 @@ class TeamFrame(wx.Frame):
         testPlayer = CC.Player(PlayerID = 1234, GameNumber = 69, FirstName = "Ernie", SirName = "Vanker", PronunciationGuide="WANKer")
         testPlayer2 = CC.GetPlayerByXciteID(19113)
         #panel=PlayerInfoPanel(self,player=testPlayer, title="bar")
-        panel2=PlayerInfoPanel(self,player=testPlayer2, title="bloot")
+        # panel=TeamPanel(self, teamName="hometeam name", team=[testPlayer, testPlayer2])
+        #panel2=PlayerInfoPanel(self,player=testPlayer2, title="bloot")
         #panel=TeamPanel(self, )
         self.Show()

@@ -301,6 +301,10 @@ class InitialSetup(wx.Frame):
             else:
                 print(FirstName, "already exists, fetching from DB")
                 player = DBPlayer
+                if player.GameNumber != GameNumber:
+                    print("Updating GameNumber for ", player.FirstName)
+                    player.GameNumber = GameNumber  # sometimes they change, the xcite fetch is more up to date
+                    CC.session.commit() # and update the database, it won't always be this way, but we can't tell from here anyway
                 # print(player.FirstName, player.PronunciationGuide)
                 # exit()
             HomePlayersByNum[player.GameNumber] = player
@@ -324,6 +328,12 @@ class InitialSetup(wx.Frame):
             else:
                 print(FirstName, "already exists, fetching from DB")
                 player = DBPlayer
+                if player.GameNumber != GameNumber:
+                    print("Updating GameNumber for ", player.FirstName)
+                    player.GameNumber = GameNumber  # sometimes they change, the xcite fetch is more up to date
+                    CC.session.commit()
+                else:
+                    print("numbers match for ", player.FirstName)
             AwayPlayersByNum[player.GameNumber] = player
         for playerNum in AwayPlayersByNum:
             print(AwayPlayersByNum[playerNum].FirstName, AwayPlayersByNum[playerNum].SirName, AwayPlayersByNum[playerNum].GameNumber, AwayPlayersByNum[playerNum].PronunciationGuide)
