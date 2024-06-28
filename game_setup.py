@@ -112,11 +112,13 @@ class InitialSetup(wx.Frame):
         # this is the refresh timer stuff, grabs data from the scoreboard and xcite API
         # this is background, the loads -may- block, does wx have threads?!
         print(SBD.SBName, SBD.SBVersion)
-
-        if(SBD.PeriodStatus == True):
-            print("Period :", SBD.Period, SBD.PeriodTimeLeft)
-        else:
-            print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
+        try:
+            if(SBD.PeriodStatus == True):
+                print("Period :", SBD.Period, SBD.PeriodTimeLeft)
+            else:
+                print("Period (paused) : ", SBD.Period, SBD.PeriodTimeLeft)
+        except:
+            print("no period, SB not running?")
         print(SBD.HomeTeamName, ":", SBD.HomeTeamScore, " .... ", SBD.AwayTeamName, ":", SBD.AwayTeamScore)
         #print('Time left in period :', scoreboard.PeriodTimeLeft)
 
@@ -141,8 +143,10 @@ class InitialSetup(wx.Frame):
 
         #print("update the scoreboard data from the XML file")
         SBD.reload()
-
-        PeriodString = "Period : %s" % (str(SBD.Period))
+        try:
+            PeriodString = "Period : %s" % (str(SBD.Period))
+        except:
+            PeriodString = "No Period"
         #print(ClockString)
         FullClockString = ""
         self.homeTag.Label = SBD.HomeTeamName

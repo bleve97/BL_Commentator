@@ -23,7 +23,7 @@ if __name__ == '__main__':
     print('Data API URL : ', includes.API_URL_Base)
 
     app = wx.App()
-    frm = game_setup.InitialSetup(None, title=includes.AppName)
+    frm = game_setup.InitialSetup(None, title=includes.AppName,style=wx.STAY_ON_TOP | wx.DEFAULT_FRAME_STYLE)
     #thisGame = CC.Game(GameID=1)
 
     #print(thisGame)
