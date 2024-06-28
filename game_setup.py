@@ -342,6 +342,9 @@ class InitialSetup(wx.Frame):
         # print(str(teams))
         print("Home : ", CC.HomeTeam.Name, "Away : ", CC.AwayTeam.Name)
         print("Fetched at : " + str(gameDataSnapshot["fetchedAt"]))
+        __main__.HTF.SetTeam(HomePlayersByNum)
+        __main__.ATF.SetTeam(AwayPlayersByNum)
+
 
     def OnGameRefreshIntervalChooser(self, event):
         #print(includes.JSONRefreshInterval)

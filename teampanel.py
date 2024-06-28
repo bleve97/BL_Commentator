@@ -80,6 +80,7 @@ class TeamPanel(wx.Panel):
         title = wx.StaticBox(self, -1, teamName)
         main_sizer.Add(title, 0, wx.TOP|wx.LEFT, 10)
         for player in team:
+            print("player in team panel :". player.FirstName)
             #PPanel = PlayerInfoPanel(self, player=player, title="bloot")
             PWidget = PlayerWidget(self, title=teamName, player=player)
             #main_sizer.Add(PPanel, 0)
@@ -103,3 +104,10 @@ class TeamFrame(wx.Frame):
         #panel2=PlayerInfoPanel(self,player=testPlayer2, title="bloot")
         #panel=TeamPanel(self, )
         self.Show()
+
+    def SetTeam(self, team):
+        # create playerwidgets for each player in the team, to insert into the sizer for the team panel
+        for num in team:
+            player = team[num]
+            print("SetTeam : ", player.FirstName, player.PronunciationGuide)
+
